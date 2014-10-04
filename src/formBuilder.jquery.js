@@ -320,43 +320,40 @@
 					'choices': item.choices
 				};
 
+				console.log('Element is loaded');
+
 	           	dust.render(item.type, data, function(err, out) {
 
 					$('#sortable-elements').append(out);
+					
+					var position = $('#sortable-elements').children('li').length;
+
 					fieldSettings();
 					reorderElements();
-
-					var position = data.position + 1;
 
 					// Remove choices
 					$('#element-'+ position).children('.choices').html('');
 
 					if(item.type == 'element-multiple-choice') {
-						
-						var choices = $('#element-'+ position).children('.choices');
 
-						// Loop through coices
-						$.each(item.choices, function(i, choice){
+						for( var i=0; i<item.choices.length; i++ ) {
 
-							if( item.type == 'element-multiple-choice' ) {
-								template = 'choice-radio';
-							}
-
-							data = {
-								'title': choice.title,
-								'value': choice.value,
-								'checked': choice.checked,
+							var c = {
+								'title': item.choices[i].title,
+								'value': item.choices[i].value,
+								'checked': item.choices[i].checked,
 								'lastChoice': i,
 								'elementId': position,
 							}
 
-							dust.render(template, data, function(err, out) {
+							dust.render('choice-radio', c, function(err, out) {
 
-								$(choices).append(out);
+								$('#element-'+ position).children('.choices').append(out);
 
 							});
 
-						});
+						}
+
 					}
 
 		   		});
