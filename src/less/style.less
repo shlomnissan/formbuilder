@@ -1,0 +1,290 @@
+@background-color: #F1F1F1;
+@border-color: #CDCDCD;
+@light-gray: #4A4A4A;
+@selected-blue: #C3DBF8;
+@selected-green: #D1E1A8;
+@button-blue: #4A90E2;
+@button-blue-selected: #2C6CB6;
+@button-green: #88BD00;
+@button-green-selected: #6E9900;
+@button-red: #D0021B;
+@button-red-selected: #AB0015;
+
+@font-source: 'Source Code Pro';
+@font-lato: 'Lato';
+
+.round-corners(@radius) {
+  border-radius: @radius;
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+}
+
+.animate {
+  -moz-transition: all 0.1s ease-in;
+  -webkit-transition: all 0.1s ease-in;
+  -o-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
+}
+
+.form-container {
+
+	h1, h2, h3, h4, h5 {
+		text-transform: uppercase;
+		font-family: @font-lato, sans-serif;
+	}
+
+	h5 {
+		color: @light-gray;
+	}
+
+	input[type='text'], input[type='number'] {
+ 		height: 30px;
+ 		width: 99%;
+ 		border: 1px solid @border-color;
+ 		.round-corners(3px);
+ 		font-family: @font-source;
+ 		font-size: 14px;
+ 		text-indent: 10px;
+ 	}
+ 	textarea {
+ 		width: 95%;
+ 		border: 1px solid @border-color;
+ 		.round-corners(3px);
+ 		font-family: @font-source;
+ 		font-size: 14px;
+ 		padding: 10px;
+ 		resize: none;
+ 	}
+
+	.button {
+		background-color: @button-blue;
+		color: #fff;
+		padding: 10px 20px;
+		.round-corners(4px);
+		border: none;
+		font-size: 15px;
+		text-transform: uppercase;
+		font: @font-lato;
+		cursor: pointer;
+		margin-bottom: 5px;
+	}
+
+	.button:hover {
+		.animate;
+		background-color: @button-blue-selected;
+	}
+
+	.button.success {
+		background-color: @button-green;
+	}
+
+	.button.success:hover {
+		.animate;
+		background-color: @button-green-selected;
+	}
+
+	.button.danger {
+		background-color: @button-red;
+	}
+
+	.button.danger:hover {
+		.animate;
+		background-color: @button-red-selected;
+	}
+
+	font-family: @font-source, serif;
+	
+	width: 1050px;
+	background-color: @background-color;
+ 	border: 1px solid @border-color;
+ 	margin: 0 auto;
+ 	.round-corners(3px);
+
+
+ 	.left-col {
+
+ 		
+ 		height: 100%;
+ 		width: 415px;
+ 		float:left;
+
+ 		.form-group label {
+ 			font-family: @font-lato;
+ 			font-weight: bold;
+ 			text-transform: uppercase;
+ 			font-size: 15px;
+ 			margin-top: 10px;
+ 			margin-bottom: 8px;
+ 			display: block;
+ 		}
+
+ 		.col-sm-6 {
+ 			width: 47%;
+ 			float: left;
+ 			margin-left: 7px;
+ 		}
+
+ 		.section {
+ 			padding: 20px;
+ 			border: 1px solid @border-color;
+ 			margin: 0 0 15px 0;
+ 			.round-corners(3px);
+ 		}
+
+ 		.choice button {
+ 			padding: 0;
+ 			width: 30px;
+ 			height: 35px;
+ 		}
+
+ 	}
+
+ 	.right-col {
+
+ 		width: 634px;
+ 		float: left;
+
+ 		border: 1px solid @border-color;
+ 		border-width: 0 0px 0 1px;
+ 		padding-bottom: 50px;
+
+ 		#form-elements, #sortable-elements {
+			padding: 0px;
+			margin: 0px;	
+		}
+
+ 		.form-element {
+ 			position: relative;
+ 			list-style-type: none;
+			cursor: pointer;
+
+			input, texarea, label {
+				cursor: pointer;
+			}
+
+			h2, h5 {
+				margin: 0px;
+				padding: 0px;
+			}
+			h2 {
+				margin-bottom: 5px;
+			}
+			padding: 25px;
+ 		}
+
+ 		#form-settings-element {
+			margin-bottom: 10px;
+		}
+		#form-settings-element:hover {
+			border: none;
+		}
+		#form-settings-element.selected {
+			background-color: @selected-blue;
+		}
+
+ 		#sortable-elements {
+ 			padding: 0px;
+ 			margin: 0px;
+ 			margin-top: 25px;
+
+ 			.form-element {
+ 				width: 85%;
+ 				margin: 10px 0 10px 25px;
+ 				list-style-type: none;
+				cursor: pointer;
+				padding: 15px;
+				border: 1px solid @border-color;
+
+				label {
+					display: block;
+					font-size: 14px;
+					margin-bottom: 10px;
+				}
+ 			}
+
+	 		.form-element.selected {
+				background-color: #DCF7C0;
+				border: 1px solid #7ED321;
+			}
+
+			.form-element:hover {
+				border: 1px dashed #7ED321;
+			}
+
+ 		}
+
+	 	.button {
+	 		margin: 20px 0 30px 25px;
+	 	}
+
+ 	}
+
+}
+
+.required-star {
+	color: red;
+}
+
+.nav-tabs {
+
+	margin: 0px;
+	padding: 0px;
+	border: 1px solid @border-color;
+	border-width: 0 0 1px 0;
+	margin-top: 45px;
+	position: relative;
+
+	li:first-child {
+		margin-left: 10px;
+	}
+
+	li {
+
+		color: @button-blue;
+		list-style-type: none;
+		display: inline-block;
+		font-family: @font-lato;
+		text-transform: uppercase;
+		padding: 10px 15px;
+		font-size: 14px;
+		font-weight: bolder;
+		cursor: pointer;
+
+		a {
+			text-decoration: none;
+			color: @button-blue;
+		}
+
+		position: relative;
+		
+	}
+
+	li.active {
+		border: 1px solid @border-color;
+		.round-corners(3px);
+		border-bottom-color: @background-color;
+		padding-bottom: 12px;
+		top: 1px;
+	}
+
+}
+
+#footer {
+	
+	font-family: @font-lato;
+	width: 600px;
+	text-align: center;
+	margin: 0 auto;
+
+	p {
+		margin-top: 30px;
+		font-size: 14px;
+	}
+
+	font-size: 12px;
+
+	a {
+		color: @button-blue;
+	}
+}
+
