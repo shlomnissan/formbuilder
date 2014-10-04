@@ -310,19 +310,21 @@
 
 			$('#form-description').val(data.description);
 			$('#form-description-label').html(data.description);
+
+			// Set up a base context with global helpers
+			var data;
 			
+
 			$.each(data.fields, function(i, item){
 
-				var data = {
+				var base = dust.makeBase({
 					'label': item.title,
 					'position': i,
 					'required': item.required,
 					'choices': item.choices
-				};
+				});
 
-				console.log('Element is loaded');
-
-	           	dust.render(item.type, data, function(err, out) {
+	           	dust.render(item.type, base, function(err, out) {
 
 					$('#sortable-elements').append(out);
 					
@@ -336,9 +338,11 @@
 
 					if(item.type == 'element-multiple-choice') {
 
+						var choiceData;
+
 						for( var i=0; i<item.choices.length; i++ ) {
 
-							var c = {
+							choiceData = {
 								'title': item.choices[i].title,
 								'value': item.choices[i].value,
 								'checked': item.choices[i].checked,
@@ -346,7 +350,7 @@
 								'elementId': position,
 							}
 
-							dust.render('choice-radio', c, function(err, out) {
+							dust.render('choice-radio', choiceData, function(err, out) {
 
 								$('#element-'+ position).children('.choices').append(out);
 
