@@ -90,9 +90,12 @@
   background-color: #ab0015;
 }
 .form-container .left-col {
-  height: 100%;
   width: 415px;
   float: left;
+  border: 1px solid #cdcdcd;
+  border-width: 0 1px 0 0px;
+  padding-bottom: 50px;
+  min-height: 600px;
 }
 .form-container .left-col .form-group label {
   font-family: 'Lato';
@@ -124,9 +127,6 @@
 .form-container .right-col {
   width: 634px;
   float: left;
-  border: 1px solid #cdcdcd;
-  border-width: 0 0px 0 1px;
-  padding-bottom: 50px;
 }
 .form-container .right-col #form-elements,
 .form-container .right-col #sortable-elements {

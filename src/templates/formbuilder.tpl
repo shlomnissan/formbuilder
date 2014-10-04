@@ -80,7 +80,7 @@
 
   </div>
 
-  <div class="right-col" id="form-col">
+  <div class="right-col" id="form-col" style="display: none">
 
     <ul id="form-elements">
 

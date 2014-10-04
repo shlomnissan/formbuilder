@@ -363,6 +363,8 @@
 		   		});
 
 	        });
+		
+			$('#form-col').fadeIn();
 
 	        $('#sortable-elements').sortable({
 				stop: function(){
