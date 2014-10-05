@@ -461,12 +461,13 @@
 		
 			formData['fields'] = Array();
 
-			$('#sortable-elements li').each(function(){
+			$('#sortable-elements li').each(function(i){
 
 				var element = {
 					'title': $(this).data('label'),
 					'type': $(this).data('type'),
 					'required': $(this).hasClass('required') ? true : false,
+					'position': i+1
 				}
 
 				// If element has multiple choices

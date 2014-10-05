@@ -99,7 +99,7 @@
             {@eq key="{type}" value="element-single-line-text"} 
 
 
-              <li class="form-element {#required}required{/required}" id="element-{@idx}{.}{/idx}" data-label="{title}" data-position="{@idx}{.}{/idx}" data-type="element-single-line-text">
+              <li class="form-element {#required}required{/required}" id="element-{position}" data-label="{title}" data-position="{position}" data-type="element-single-line-text">
                 <label>
                   <span class="label-title">{title}</span>
                   {#required}<span class="required-star"> *</span>{/required}
@@ -114,7 +114,7 @@
 
             {@eq key="{type}" value="element-number"} 
 
-              <li class="form-element {#required}required{/required}" id="element-{@idx}{.}{/idx}" data-label="{title}" data-position="{@idx}{.}{/idx}" data-type="element-number">
+              <li class="form-element {#required}required{/required}" id="element-{position}" data-label="{title}" data-position="{position}" data-type="element-number">
                 <label>
                   <span class="label-title">{title}</span>
                   {#required}<span class="required-star"> *</span>{/required}
@@ -128,7 +128,7 @@
 
             {@eq key="{type}" value="element-paragraph-text"} 
 
-            <li class="form-element {#required}required{/required}" id="element-{@idx}{.}{/idx}" data-label="{title}" data-position="{@idx}{.}{/idx}" data-type="element-paragraph-text">
+            <li class="form-element {#required}required{/required}" id="element-{position}" data-label="{title}" data-position="{position}" data-type="element-paragraph-text">
               <label>
                 <span class="label-title">{title}</span>
                 {#required}<span class="required-star"> *</span>{/required}
@@ -142,7 +142,7 @@
 
             {@eq key="{type}" value="element-multiple-choice"}
 
-              <li class="form-element {#required}required{/required}" id="element-{@idx}{.}{/idx}" data-label="{title}" data-position="{@idx}{.}{/idx}" data-type="element-multiple-choice">
+              <li class="form-element {#required}required{/required}" id="element-{position}" data-label="{title}" data-position="{position}" data-type="element-multiple-choice">
 
                 <label>
                   <span class="label-title">{title}</span>
@@ -155,7 +155,7 @@
 
                     <div class="choice radio disabled">
                       <label>
-                        <input type="radio" class="option-{lastChoice}" name="element-{elementId}-choice" value="{value}" {#checked}checked{/checked} disabled>
+                        <input type="radio" class="option-{@idx}{.}{/idx}" name="element-{position}-choice" value="{value}" {#checked}checked{/checked} disabled>
                         <span class="choice-label">{title}</span>
                       </label>
                     </div>
