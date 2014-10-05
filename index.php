@@ -39,6 +39,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
     <script src="src/libraries/dust-js/dust-core-0.3.0.min.js"></script>
     <script src="src/libraries/dust-js/dust-full-0.3.0.min.js"></script>
+    <script src="src/libraries/dust-js/dust-helpers.js"></script>
     <script src="src/formBuilder.jquery.js"></script>
 
     <script>

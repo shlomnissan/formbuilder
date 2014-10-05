@@ -30,35 +30,40 @@
 
 		};
 
-		// Load the base template
-		var base = {
-			fields: true,
-			fieldSettings: false,
-			formSettings: false
-		};
-
-		dust.render('formbuilder', base, function(err, out) {
 		
-			$('#wf-form-builder').append(out);
+		// Get data
+		$.getJSON( settings.load_url, function( data ) {
+			
+			// Load the base template
+			var base = {
+				form: data,
+				fieldSettings: false,
+				formSettings: false
+			};
 
-			// Get data
-			$.getJSON( settings.load_url, function( data ) {
-			 loadForm(data);
-			});
+			console.log(base);
 
-			addField();
-			bindFields();	
-			highlightTab();
-			settingsControls();
-			tabs();
-
-			$('#save').click(function(){
-				serialize();
-			});
-
-	    });
-
+			// Render the form
+			dust.render('formbuilder', base, function(err, out) {
 		
+				$('#wf-form-builder').append(out);
+
+				addField();
+				bindFields();	
+				highlightTab();
+				settingsControls();
+				tabs();
+
+				fieldSettings();
+				reorderElements();
+
+				$('#save').click(function(){
+					serialize();
+				});
+
+		    });
+
+		});
 
 		// Clear selected status
 		var clearSelectedElements = function() {
@@ -76,6 +81,7 @@
 
 
 			$('#field-label').val(currentlySelected.data('label'));
+
 			$('#field-label').on("keyup", function() { 
 
 				currentlySelected.children('label').children('.label-title').html($(this).val());
@@ -196,9 +202,17 @@
 
 		// Update elements ID according to position
 		var reorderElements = function() {
+
+			$('#sortable-elements').sortable({
+				stop: function(){
+					reorderElements();
+				}
+			});
+
 			$('#sortable-elements li').each(function(i){
 				$(this).attr( 'id', 'element-'+ (i+1) );
 			});
+
 			fieldSettings();
 		}
 
@@ -299,78 +313,6 @@
 				currentlySelected = '';
 				clearSelectedElements();
 			});	
-
-		}
-
-		// Load form from JSON
-		var loadForm = function(data) {
-
-			$('#form-title').val(data.title);
-			$('#form-title-label').html(data.title);
-
-			$('#form-description').val(data.description);
-			$('#form-description-label').html(data.description);
-
-			// Set up a base context with global helpers
-			var data;
-			
-
-			$.each(data.fields, function(i, item){
-
-				var base = dust.makeBase({
-					'label': item.title,
-					'position': i,
-					'required': item.required,
-					'choices': item.choices
-				});
-
-	           	dust.render(item.type, base, function(err, out) {
-
-					$('#sortable-elements').append(out);
-					
-					var position = $('#sortable-elements').children('li').length;
-
-					fieldSettings();
-					reorderElements();
-
-					// Remove choices
-					$('#element-'+ position).children('.choices').html('');
-
-					if(item.type == 'element-multiple-choice') {
-
-						var choiceData;
-
-						for( var i=0; i<item.choices.length; i++ ) {
-
-							choiceData = {
-								'title': item.choices[i].title,
-								'value': item.choices[i].value,
-								'checked': item.choices[i].checked,
-								'lastChoice': i,
-								'elementId': position,
-							}
-
-							dust.render('choice-radio', choiceData, function(err, out) {
-
-								$('#element-'+ position).children('.choices').append(out);
-
-							});
-
-						}
-
-					}
-
-		   		});
-
-	        });
-		
-			$('#form-col').fadeIn();
-
-	        $('#sortable-elements').sortable({
-				stop: function(){
-					reorderElements();
-				}
-			});
 
 		}
 
