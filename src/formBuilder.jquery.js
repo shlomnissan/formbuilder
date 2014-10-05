@@ -16,6 +16,7 @@
 
 		// Globl vars
 		var currentlySelected = '';
+		var tabs = '';
 
 		// Auto load templates
 		dust.onLoad = function(name, callback) {
@@ -41,21 +42,20 @@
 				formSettings: false
 			};
 
-			console.log(base);
-
 			// Render the form
 			dust.render('formbuilder', base, function(err, out) {
-		
+				
+
 				$('#wf-form-builder').append(out);
 
 				addField();
 				bindFields();	
 				highlightTab();
 				settingsControls();
-				tabs();
-
 				fieldSettings();
 				reorderElements();
+
+				tabs = $('.nav-tabs').tabs();
 
 				$('#save').click(function(){
 					serialize();
@@ -64,6 +64,8 @@
 		    });
 
 		});
+
+
 
 		// Clear selected status
 		var clearSelectedElements = function() {
@@ -77,9 +79,8 @@
 		}
 
 		var attachSettings = function() {	
+			
 			// Field Label
-
-
 			$('#field-label').val(currentlySelected.data('label'));
 
 			$('#field-label').on("keyup", function() { 
@@ -246,7 +247,7 @@
 					currentlySelected = newElement;
 					
 					currentlySelected.addClass('selected');
-					showTab('#field-settings');
+					tabs.showTab('#field-settings');
 
 					attachSettings();
 
@@ -273,11 +274,11 @@
 				// View the settings base on element type
 				if( $(this).data('type') == 'form-settings' ) {
 					
-					showTab('#form-settings');
+					tabs.showTab('#form-settings');
 
 				} else {
 					
-					showTab('#field-settings');
+					tabs.showTab('#field-settings');
 					currentlySelected = $(this);
 					attachSettings();
 
@@ -297,7 +298,7 @@
 					if( $('.form-element').length > 2 ) {
 						currentlySelected.remove();
 						reorderElements();
-						showTab('#add-field');
+						tabs.showTab('#add-field');
 						currentlySelected = '';
 						clearSelectedElements();
 					} else {
@@ -309,58 +310,14 @@
 			});
 
 			$('#control-add-field').click(function(){
-				showTab('#add-field');
+				tabs.showTab('#add-field');
 				currentlySelected = '';
 				clearSelectedElements();
 			});	
 
 		}
 
-		var tabs = function() {
-
-			$('.tab-content .tab-pane').css('display', 'none');
-			showActiveTab();
-			
-			$('.nav-tabs li').click(function(){
-				hideTabs();
-				$(this).addClass('active');
-				showActiveTab();
-			});
-			
-		}
-
-		var showActiveTab = function() {
-
-			$('.nav-tabs li').each(function(i){
-				
-				var pane = $(this).data('target');
-				
-				if( $(this).hasClass('active') ) {
-					$(pane).css('display', 'block');
-				} else {
-					$(pane).css('display', 'none');
-				}
-
-			});
-		}
-
-		var hideTabs = function() {
-			$('.nav-tabs li').each(function(){
-				$(this).removeClass('active');
-			});
-		}
-
-		var showTab = function(tab) {
-			hideTabs();
-			
-			$('.nav-tabs li').each(function(){
-				if( $(this).data('target') == tab) {
-					$(this).addClass('active');
-				}
-			});
-
-			showActiveTab();
-		}
+		
 
 		var bindMultipleChoiceControls = function() {
 			

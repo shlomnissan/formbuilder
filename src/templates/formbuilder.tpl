@@ -62,17 +62,19 @@
 
       <div class="tab-pane" id="form-settings" style="padding: 20px;">
 
+        {#form}
         <div class="section">
           <div class="form-group">
             <label>Title</label>
-            <input type="text" class="bind-control form-control" data-bind="#form-title-label" id="form-title" value="Form" />
+            <input type="text" class="bind-control form-control" data-bind="#form-title-label" id="form-title" value="{title}" />
           </div>
 
           <div class="form-group">
             <label>Description</label>
-            <textarea class="bind-control form-control" data-bind="#form-description-label" id="form-description">This is my form. Please fill it out. It's awesome!</textarea>
+            <textarea class="bind-control form-control" data-bind="#form-description-label" id="form-description">{description}</textarea>
           </div>
         </div>
+        {/form}
 
       </div>
 
