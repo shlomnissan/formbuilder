@@ -14,71 +14,166 @@
 			save_url: '/'
         }, options);
 
-		// Globl vars
-		var currentlySelected = '';
-		var tabs = '';
 
-		// Auto load templates
-		dust.onLoad = function(name, callback) {
-		  $.ajax('src/templates/' + name + '.tpl', {
-		    success: function(data) {
-		      callback(undefined, data);
-		    },
-		    error: function(jqXHR, textStatus, errorThrown) {
-		      callback(textStatus, undefined);
-		    }
-		  });
+		/*******************************************************/
+		/*	Fields and Tabs
+		/*******************************************************/
 
-		};
 
-		
-		// Get data
-		$.getJSON( settings.load_url, function( data ) {
-			
-			// Load the base template
-			var base = {
-				form: data,
-				fieldSettings: false,
-				formSettings: false
-			};
+		/*
+			fieldAdd
+			Adding a new form field on .new-element click
+		*/
+		var fieldAdd = function() {
 
-			// Render the form
-			dust.render('formbuilder', base, function(err, out) {
-				
+			// Bind new field buttons
+			$('.new-element').click(function(){
 
-				$('#wf-form-builder').append(out);
+				clearSelectedElements();
 
-				addField();
-				bindFields();	
-				highlightTab();
-				settingsControls();
-				fieldSettings();
-				reorderElements();
-
-				tabs = $('.nav-tabs').tabs();
-
-				$('#save').click(function(){
-					serialize();
+				var sortableElements = $('#sortable-elements');
+				sortableElements.sortable({
+					stop: function(){
+						reorderElements();
+					}
 				});
 
-		    });
+				var tpl = $(this).data('type');
 
-		});
+				var data = {
+					'label': 'Untitled',
+					'position': $('.form-element').length - 1
+				};
 
+				dust.render(tpl, data, function(err, out) {
+					
+					sortableElements.append(out);
+					fieldSelect();
 
+					var newElement = $('#element-'+data['position']);
+					currentlySelected = newElement;
+					
+					currentlySelected.addClass('selected');
+					tabs.showTab('#field-settings');
 
-		// Clear selected status
-		var clearSelectedElements = function() {
+					bindSettings();
 
-			// Remove selected class from all elements
-			currentlySelected = '';
-			$('.form-element').each(function(){
-				$(this).removeClass('selected');
+		    	});
+
 			});
 
 		}
 
-		var attachSettings = function() {	
+
+		/*
+			fieldSelect
+			Show settings pan and bind fields on .form-element click
+		*/
+		var fieldSelect = function() {
+
+			$('.form-element').unbind();
+
+			// Form element clicked
+			$('.form-element').click(function(){
+
+				// Remove selected class from all elements
+				clearSelectedElements();
+
+				// Add selected class to selected element
+				$(this).addClass('selected');
+
+				// View the settings base on element type
+				if( $(this).data('type') == 'form-settings' ) {
+					
+					tabs.showTab('#form-settings');
+
+				} else {
+					
+					tabs.showTab('#field-settings');
+					currentlySelected = $(this);
+					bindSettings();
+
+				}
+
+			});
+		}
+
+
+		/*
+			tabSelect
+			Adjust form fields based on tab selection
+		*/
+		var tabSelect = function() {
+
+			// Switch tabs
+			$('.toolbox-tab').click(function(){
+
+				clearSelectedElements();
+
+				if( $(this).data('target') == '#form-settings' ) {
+					$('#form-settings-element').addClass('selected');
+				}
+
+				if( $(this).data('target') == '#field-settings' ) {
+					$('#element-1').addClass('selected');
+					currentlySelected = $('#element-1');
+					bindSettings();
+				}
+
+			});
+
+		}
+
+
+		/*******************************************************/
+		/*	Bind controls
+		/*******************************************************/
+
+
+
+		/*
+			bindTextFields
+			Binds textfields in the settings panel to form textfields
+		*/
+		var bindTextFields = function() {
+			// Bind controls
+			$('.bind-control').each(function(){
+
+				var target = $(this).data('bind');
+
+				$(this).on("keyup", function() {
+
+					if(currentlySelected == '') {
+						$(target).html($(this).val());
+					} else {
+						currentlySelected.find(target).next('.choice-label').html($(this).val());
+					}
+
+				  	
+				});
+
+			});
+		}
+
+
+		/*
+			bindRadioButtons
+			Binds radio buttons form the settings pane to form elements
+		*/
+		var bindRadioButtons = function () {
+			$('.radio-option').unbind();
+			$('.radio-option').click(function(){
+				var target = $(this).parent().next('input').data('bind');
+				$(currentlySelected).find(target).prop("checked", true);
+			});
+		}
+
+
+		/*
+			bindSettings
+			Binds settings controls to form elements (labels, required, choices, etc)
+		*/
+		var bindSettings = function() {	
 			
 			// Field Label
 			$('#field-label').val(currentlySelected.data('label'));
@@ -97,6 +192,8 @@
 				$('#field-choices').css('display', 'block');
 				$('#field-choices').html('<div class="form-group"><label>Choices</label></div>');
 
+				var choices = [];
+
 				currentlySelected.children('.choices').children('.radio').each(function(i){
 
 					var checked = $(this).children('label').children('input').is(':checked') ? true : false;
@@ -110,16 +207,22 @@
 						'bindingClass': bindingClass,
 					};
 
-					dust.render(currentlySelected.children('.choices').data('type'), data, function(err, out) {
+					choices.push(data);
+
+				});
+
+				var data = {
+					"choices":choices
+				}
+
+				// Render the choices
+
+				dust.render(currentlySelected.children('.choices').data('type'), data, function(err, out) {
 						
-						$('#field-choices').append(out);
-						bindFields();
-						bindMultipleChoiceControls();
-						bindSettingsRadio();
-
-				    });
-
-
+					$('#field-choices').append(out);
+					bindTextFields();
+					bindRadioButtons();
+					controlMultipleChoice();
 
 				});
 
@@ -158,137 +261,19 @@
 
 		}
 
-		// Highlight the default element based on tab selection
-		var highlightTab = function() {
 
-			// Switch tabs
-			$('.toolbox-tab').click(function(){
 
-				clearSelectedElements();
+		/*******************************************************/
+		/*	Controls
+		/*******************************************************/
 
-				if( $(this).data('target') == '#form-settings' ) {
-					$('#form-settings-element').addClass('selected');
-				}
 
-				if( $(this).data('target') == '#field-settings' ) {
-					$('#element-1').addClass('selected');
-					currentlySelected = $('#element-1');
-					attachSettings();
-				}
 
-			});
-
-		}
-
-		// Bind toolbox textfield to actual textfields
-		var bindFields = function() {
-			// Bind controls
-			$('.bind-control').each(function(){
-
-				var target = $(this).data('bind');
-
-				$(this).on("keyup", function() {
-
-					if(currentlySelected == '') {
-						$(target).html($(this).val());
-					} else {
-						currentlySelected.find(target).next('.choice-label').html($(this).val());
-					}
-
-				  	
-				});
-
-			});
-		}
-
-		// Update elements ID according to position
-		var reorderElements = function() {
-
-			$('#sortable-elements').sortable({
-				stop: function(){
-					reorderElements();
-				}
-			});
-
-			$('#sortable-elements li').each(function(i){
-				$(this).attr( 'id', 'element-'+ (i+1) );
-			});
-
-			fieldSettings();
-		}
-
-		// Add a new field
-		var addField = function() {
-
-			// Bind new field buttons
-			$('.new-element').click(function(){
-
-				clearSelectedElements();
-
-				var sortableElements = $('#sortable-elements');
-				sortableElements.sortable({
-					stop: function(){
-						reorderElements();
-					}
-				});
-
-				var tpl = $(this).data('type');
-
-				var data = {
-					'label': 'Untitled',
-					'position': $('.form-element').length
-				};
-
-				dust.render(tpl, data, function(err, out) {
-					sortableElements.append(out);
-					fieldSettings();
-
-					var newElement = $('#element-'+data['position']);
-					currentlySelected = newElement;
-					
-					currentlySelected.addClass('selected');
-					tabs.showTab('#field-settings');
-
-					attachSettings();
-
-		    	});
-
-			});
-
-		}
-
-		// Show field settings
-		var fieldSettings = function() {
-
-			$('.form-element').unbind();
-
-			// Form element clicked
-			$('.form-element').click(function(){
-
-				// Remove selected class from all elements
-				clearSelectedElements();
-
-				// Add selected class to selected element
-				$(this).addClass('selected');
-
-				// View the settings base on element type
-				if( $(this).data('type') == 'form-settings' ) {
-					
-					tabs.showTab('#form-settings');
-
-				} else {
-					
-					tabs.showTab('#field-settings');
-					currentlySelected = $(this);
-					attachSettings();
-
-				}
-
-			});
-		}
-
-		// Settings controls
-		var settingsControls = function() {
+		/*
+			controlSettings
+			Attach settings control (Remove Field, Add Field)
+		*/
+		var controlSettings = function() {
 
 			// Remove field
 			$('#control-remove-field').click(function(){
@@ -317,9 +302,12 @@
 
 		}
 
-		
 
-		var bindMultipleChoiceControls = function() {
+		/*
+			controlMutlipleChoice
+			Attach multiple choice controls (remove choice, ddd choice)
+		*/
+		var controlMultipleChoice = function() {
 			
 			// Remove choice
 			$('.remove-choice').unbind();
@@ -335,8 +323,8 @@
 					$(this).parent().remove();
 
 					// Bind new fields
-					bindFields();
-					bindMultipleChoiceControls();
+					bindTextFields();
+					controlMultipleChoice();
 				}
 
 			});
@@ -360,10 +348,14 @@
 
 				lastChoice++;
 				
-				var data = {
+				var choice = {
 					'bindingClass':'option-'+lastChoice,
 					'title':'Untitled'
 				};
+
+				var data = {
+					"choices": choice
+				}
 				
 				// Render a new choice in settings
 				dust.render(currentlySelected.children('.choices').data('type'), data, function(err, out) {
@@ -390,9 +382,9 @@
 					});
 
 					// Bind new fields
-					bindFields();
-					bindMultipleChoiceControls();
-					bindSettingsRadio();
+					bindTextFields();
+					bindRadioButtons();
+
 
 				});
 
@@ -400,14 +392,52 @@
 
 		}
 
-		var bindSettingsRadio = function () {
-			$('.radio-option').unbind();
-			$('.radio-option').click(function(){
-				var target = $(this).parent().next('input').data('bind');
-				$(currentlySelected).find(target).prop("checked", true);
+
+
+		/*******************************************************/
+		/*	Helpers
+		/*******************************************************/
+
+		
+		/*
+			clearSelectedElements
+			Remove currently selected element
+		*/
+		var clearSelectedElements = function() {
+
+			// Remove selected class from all elements
+			currentlySelected = '';
+			$('.form-element').each(function(){
+				$(this).removeClass('selected');
 			});
+
 		}
 
+
+		/*
+			reorderElements
+			Update element id based on position
+		*/
+		var reorderElements = function() {
+
+			$('#sortable-elements').sortable({
+				stop: function(){
+					reorderElements();
+				}
+			});
+
+			$('#sortable-elements li').each(function(i){
+				$(this).attr( 'id', 'element-'+ i );
+			});
+
+			fieldSelect();
+		}
+
+
+		/*
+			serialize
+			Serialize form elements into a JSON string
+		*/
 		var serialize = function() {
 			
 			var formData = {};
@@ -459,6 +489,64 @@
 
 		}
 
-	}
+
+		/*******************************************************/
+		/*	Entry Point
+		/*******************************************************/
+
+		// Globl vars
+		var currentlySelected = '';
+		var tabs = '';
+
+
+		// Auto load templates
+		dust.onLoad = function(name, callback) {
+		  $.ajax('src/templates/' + name + '.tpl', {
+		    success: function(data) {
+		      callback(undefined, data);
+		    },
+		    error: function(jqXHR, textStatus, errorThrown) {
+		      callback(textStatus, undefined);
+		    }
+		  });
+		};
+		
+		// Get data
+		$.getJSON( settings.load_url, function( data ) {
+			
+			// Load the base template
+			var base = {
+				form: data,
+				fieldSettings: false,
+				formSettings: false
+			};
+
+			// Render the form
+			dust.render('formbuilder', base, function(err, out) {
+				
+
+				$('#wf-form-builder').append(out);
+
+				fieldAdd();
+				fieldSelect();
+				tabSelect();
+
+				bindTextFields();
+				controlSettings();
+				reorderElements();
+
+				tabs = $('.nav-tabs').tabs();
+
+				$('#save').click(function(){
+					serialize();
+				});
+
+		    });
+
+		});
+
+		///
+
+	} // End plugin
 
 }(jQuery));

@@ -1,3 +1,4 @@
+{#choices}
 <div class="radio choice">
 	
 	<label>
@@ -10,3 +11,4 @@
 	<button class="button danger remove-choice" data-delete=".{bindingClass}">-</button>
 
 </div>
+{/choices}
