@@ -157,14 +157,16 @@
 
 
 		/*
-			bindRadioButtons
-			Binds radio buttons form the settings pane to form elements
+			bindButtons (checkboxes and radio buttons)
+			Binds buttons from the settings pane to form elements
 		*/
-		var bindRadioButtons = function () {
-			$('.radio-option').unbind();
-			$('.radio-option').click(function(){
+		var bindButtons = function () {
+			$('.option').unbind();
+			$('.option').click(function(){
 				var target = $(this).parent().next('input').data('bind');
-				$(currentlySelected).find(target).prop("checked", true);
+				$(currentlySelected).find(target).prop( "checked", function( i, val ) {
+					return !val;
+				});
 			});
 		}
 
@@ -186,7 +188,7 @@
 			});
 
 			// Choices
-			if(currentlySelected.data('type') == 'element-multiple-choice') {
+			if(currentlySelected.data('type') == 'element-multiple-choice' || currentlySelected.data('type') == 'element-checkboxes') {
 
 
 				$('#field-choices').css('display', 'block');
@@ -194,7 +196,7 @@
 
 				var choices = [];
 
-				currentlySelected.children('.choices').children('.radio').each(function(i){
+				currentlySelected.children('.choices').children('.choice').each(function(i){
 
 					var checked = $(this).children('label').children('input').is(':checked') ? true : false;
 					var bindingClass = $(this).children('label').children('input').attr('class');
@@ -221,7 +223,7 @@
 						
 					$('#field-choices').append(out);
 					bindTextFields();
-					bindRadioButtons();
+					bindButtons();
 					controlMultipleChoice();
 
 				});
@@ -367,6 +369,11 @@
 						template = 'choice-radio';
 					}
 
+					if( currentlySelected.data('type') == 'element-checkboxes' ) {
+						template = 'choice-checkbox';
+					}
+
+
 					var elementId = currentlySelected.attr('id').replace('element-','');
 
 					// Load template
@@ -383,7 +390,8 @@
 
 					// Bind new fields
 					bindTextFields();
-					bindRadioButtons();
+					bindButtons();
+					controlMultipleChoice();
 
 
 				});
@@ -458,7 +466,7 @@
 				}
 
 				// If element has multiple choices
-				if( element['type'] == 'element-multiple-choice' ) {
+				if( element['type'] == 'element-multiple-choice' || element['type'] == 'element-checkboxes'  ) {
 
 					var choices = [];
 

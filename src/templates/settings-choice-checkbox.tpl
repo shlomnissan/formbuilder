@@ -2,7 +2,7 @@
 <div class="radio choice">
 	
 	<label>
-		<input type="radio" name="choice" class="option" {#checked}checked{/checked}>&nbsp;
+		<input type="checkbox" name="choice" class="option" {#checked}checked{/checked}>&nbsp;
 	</label>
 
 	<input type="text" class="bind-control" data-bind=".{bindingClass}" style="display: inline-block; width: 65%;" value="{title}" />&nbsp;

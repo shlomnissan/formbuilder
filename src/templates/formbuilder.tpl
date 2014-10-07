@@ -15,6 +15,7 @@
         <div class="col-sm-6">
           <button class="button new-element" data-type="element-single-line-text" style="width: 100%;">Single Line Text</button>
           <button class="button new-element" data-type="element-paragraph-text" style="width: 100%;">Paragraph Text</button>
+          <button class="button new-element" data-type="element-checkboxes" style="width: 100%;">Checkboxes</button>
         </div>
 
         <div class="col-sm-6">
