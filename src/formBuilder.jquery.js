@@ -519,34 +519,49 @@
 		  });
 		};
 		
+		var base = {
+
+		};
+
+		dust.render('formbuilder-base', base, function(err, out) {
+			$('#wf-form-builder').append(out);
+		});
+
 		// Get data
 		$.getJSON( settings.load_url, function( data ) {
 			
 			// Load the base template
-			var base = {
+			base = {
 				form: data,
 				fieldSettings: false,
 				formSettings: false
 			};
 
 			// Render the form
-			dust.render('formbuilder', base, function(err, out) {
+			dust.render('formbuilder-fields', base, function(err, out) {
 				
 
-				$('#wf-form-builder').append(out);
+				$('.loading').fadeOut(function(){
+					$('#form-col').html(out);
+					$('#form-elements').fadeIn();
 
-				fieldAdd();
-				fieldSelect();
-				tabSelect();
+					$('#form-title').val(base['form']['title']);
+					$('#form-description').val(base['form']['description']);
 
-				bindTextFields();
-				controlSettings();
-				reorderElements();
+					fieldAdd();
+					fieldSelect();
+					tabSelect();
 
-				tabs = $('.nav-tabs').tabs();
+					bindTextFields();
+					controlSettings();
+					reorderElements();
 
-				$('#save').click(function(){
-					serialize();
+					tabs = $('.nav-tabs').tabs();
+
+					$('#save').click(function(){
+						serialize();
+					});
+
 				});
 
 		    });

@@ -128,6 +128,11 @@
   width: 634px;
   float: left;
 }
+.form-container .right-col .loading {
+  width: 100%;
+  text-align: center;
+  margin-top: 50%;
+}
 .form-container .right-col #form-elements,
 .form-container .right-col #sortable-elements {
   padding: 0px;
