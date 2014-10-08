@@ -1,3 +1,5 @@
+heroku keys:add
+heroku keys:add.pub
 .DS_Store
 .AppleDouble
 .LSOverride

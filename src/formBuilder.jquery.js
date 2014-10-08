@@ -115,8 +115,8 @@
 				}
 
 				if( $(this).data('target') == '#field-settings' ) {
-					$('#element-1').addClass('selected');
-					currentlySelected = $('#element-1');
+					$('#element-0').addClass('selected');
+					currentlySelected = $('#element-0');
 					bindSettings();
 				}
 
