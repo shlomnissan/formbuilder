@@ -9,7 +9,8 @@
     <title>jQuery Form Builder v3.0</title>
     
     <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
-      
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    
     <link rel="stylesheet" href="src/css/style.css">
 
   </head>
