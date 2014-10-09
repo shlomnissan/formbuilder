@@ -11,7 +11,8 @@
 		// Set default settings
 		var settings = $.extend({
 			load_url: '/',
-			save_url: '/'
+			save_url: '/',
+			locale:'default'
         }, options);
 
 
@@ -41,8 +42,9 @@
 				var tpl = $(this).data('type');
 
 				var data = {
-					'label': 'Untitled',
-					'position': $('.form-element').length - 1
+					'label': localize_i18n.untitled,
+					'position': $('.form-element').length - 1, 
+					'localize_i18n': localize_i18n
 				};
 
 				dust.render(tpl, data, function(err, out) {
@@ -192,7 +194,7 @@
 
 
 				$('#field-choices').css('display', 'block');
-				$('#field-choices').html('<div class="form-group"><label>Choices</label></div>');
+				$('#field-choices').html('<div class="form-group"><label>'+localize_i18n.field_options.choices+'</label></div>');
 
 				var choices = [];
 
@@ -206,7 +208,7 @@
 						'checked':checked,
 						'title': title,
 						'position': i+1,
-						'bindingClass': bindingClass,
+						'bindingClass': bindingClass
 					};
 
 					choices.push(data);
@@ -214,7 +216,8 @@
 				});
 
 				var data = {
-					"choices":choices
+					"choices":choices,
+					'localize_i18n': localize_i18n
 				}
 
 				// Render the choices
@@ -352,11 +355,12 @@
 				
 				var choice = {
 					'bindingClass':'option-'+lastChoice,
-					'title':'Untitled'
+					'title': localize_i18n.untitled
 				};
 
 				var data = {
-					"choices": choice
+					"choices": choice,
+					'localize_i18n': localize_i18n
 				}
 				
 				// Render a new choice in settings
@@ -378,8 +382,8 @@
 
 					// Load template
 					data = {
-						'title': 'Untitled',
-						'value': 'untitled',
+						'title': localize_i18n.untitled,
+						'value': localize_i18n.untitled,
 						'lastChoice': lastChoice,
 						'elementId': elementId
 					}
@@ -502,7 +506,8 @@
 		/*	Entry Point
 		/*******************************************************/
 
-		// Globl vars
+
+		// Global vars
 		var currentlySelected = '';
 		var tabs = '';
 
@@ -518,11 +523,65 @@
 		    }
 		  });
 		};
-		
-		var base = {
 
+		// Define default messages
+		var localize_i18n = {
+			formName:         "My form",
+			description_form: "Please, fill it out.",
+			untitled:         "Untitled",
+			tabs: {
+				addfield:       "Add Field",
+				settings:       "Field Settings",
+				form:           "Form Settings"
+			},        
+			fields: {       
+				text:           "Text",
+				number:         "Number",
+				paragraph:      "Paragraph",
+				dropdown:       "Dropdown",
+				chebox:         "Checkbox"
+			}, 
+			field_options: {     
+				title:          "Title",
+				label:          "Field label",
+				choices:        "Choices",
+				options:        "Options",
+				required:       "Required",
+				description:    "Description"
+			},     
+			placeholders: {     
+				first:          "First",
+				second:         "Second",
+				third:          "Third",
+			},   
+			buttons: {     
+				save:           "Save form",
+				remove:         "Remove",
+				add:            "Add Field"
+			},       
+		}   
+
+
+		// Load locale
+		if (settings.locale != "default"){
+			$.ajax({
+			 url: settings.locale,
+			 dataType: 'json',
+			 async: false,
+			 success: function( data ) {
+			   localize_i18n = data;
+			 },
+			 error: function( data ) {
+			   alert("File not found or json localize is wrong!")
+			 }
+			});
+		}
+
+    	var base = {
+			localize_i18n: localize_i18n
 		};
 
+	
 		dust.render('formbuilder-base', base, function(err, out) {
 			$('#wf-form-builder').append(out);
 		});
@@ -534,7 +593,8 @@
 			base = {
 				form: data,
 				fieldSettings: false,
-				formSettings: false
+				formSettings: false,
+				localize_i18n: localize_i18n
 			};
 
 			// Render the form

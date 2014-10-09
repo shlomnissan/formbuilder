@@ -48,7 +48,8 @@
     <script>
 
       $('#formBuilder').formBuilder({
-        load_url: '/src/json/example.json'
+        load_url: 'src/json/example.json',
+        locale:'src/i18n/en.json'
       });
 
     </script>

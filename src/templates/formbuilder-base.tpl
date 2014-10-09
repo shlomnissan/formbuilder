@@ -3,9 +3,9 @@
   <div class="left-col" id="toolbox-col" style="padding-top: 37px">
 
     <ul class="nav-tabs" role="tablist">
-      <li class="active toolbox-tab" data-target="#add-field">Add a Field</li>
-      <li class="toolbox-tab" data-target="#field-settings">Field Settings</li>
-      <li class="toolbox-tab" data-target="#form-settings">Form Settings</li>
+      <li class="active toolbox-tab" data-target="#add-field">{localize_i18n.tabs.addfield}</li>
+      <li class="toolbox-tab" data-target="#field-settings">{localize_i18n.tabs.settings}</li>
+      <li class="toolbox-tab" data-target="#form-settings">{localize_i18n.tabs.form}</li>
     </ul>
 
     <div class="tab-content">
@@ -13,14 +13,14 @@
       <div class="tab-pane active" style="padding: 20px;" id="add-field">
 
         <div class="col-sm-6">
-          <button class="button new-element" data-type="element-single-line-text" style="width: 100%;">Single Line Text</button>
-          <button class="button new-element" data-type="element-paragraph-text" style="width: 100%;">Paragraph Text</button>
-          <button class="button new-element" data-type="element-checkboxes" style="width: 100%;">Checkboxes</button>
+          <button class="button new-element" data-type="element-single-line-text" style="width: 100%;">{localize_i18n.fields.text}</button>
+          <button class="button new-element" data-type="element-paragraph-text" style="width: 100%;">{localize_i18n.fields.paragraph}</button>
+          <button class="button new-element" data-type="element-checkboxes" style="width: 100%;">{localize_i18n.fields.chebox}</button>
         </div>
 
         <div class="col-sm-6">
-          <button class="button new-element" data-type="element-number" style="width: 100%;">Number</button>
-          <button class="button new-element" data-type="element-multiple-choice" style="width: 100%;">Multiple Choice</button>
+          <button class="button new-element" data-type="element-number" style="width: 100%;">{localize_i18n.fields.number}</button>
+          <button class="button new-element" data-type="element-multiple-choice" style="width: 100%;">{localize_i18n.fields.dropdown}</button>
         </div>
 
       </div>
@@ -29,35 +29,35 @@
 
         <div class="section">
           <div class="form-group">
-            <label>Field Label</label>
-            <input type="text" class="form-control" id="field-label" value="Untitled" />
+            <label>{localize_i18n.field_options.label}</label>
+            <input type="text" class="form-control" id="field-label" value="{localize_i18n.untitled}" />
           </div>
         </div>
 
          <div class="section" id="field-choices" style="display: none;">
        
           <div class="form-group">
-              <label>Choices</label>
+              <label>{localize_i18n.field_options.choices}</label>
           </div>
 
         </div>
 
         <div class="section">
         <div class="form-group">
-            <label>Field Options</label>
+            <label>{localize_i18n.field_options.options}</label>
         </div>
 
         <div class="field-options">
             <div class="checkbox">
               <label>
-                <input type="checkbox" id="required">Required
+                <input type="checkbox" id="required">{localize_i18n.field_options.required}
               </label>
             </div>
           </div>
         </div>
 
-        <button class="button danger" id="control-remove-field">Remove</button>&nbsp;
-        <button class="button" id="control-add-field">Add Field</button>
+        <button class="button danger" id="control-remove-field">{localize_i18n.buttons.remove}</button>&nbsp;
+        <button class="button" id="control-add-field">{localize_i18n.buttons.add}</button>
 
       </div>
 
@@ -65,12 +65,12 @@
 
         <div class="section">
           <div class="form-group">
-            <label>Title</label>
+            <label>{localize_i18n.field_options.title}</label>
             <input type="text" class="bind-control form-control" data-bind="#form-title-label" id="form-title" value="" />
           </div>
 
           <div class="form-group">
-            <label>Description</label>
+            <label>{localize_i18n.field_options.description}</label>
             <textarea class="bind-control form-control" data-bind="#form-description-label" id="form-description"></textarea>
           </div>
         </div>
@@ -84,7 +84,7 @@
   <div class="right-col" id="form-col">
 
     <div class="loading">
-      Loading...
+      {localize_i18n.loading}...
     </div>
 
   </div>

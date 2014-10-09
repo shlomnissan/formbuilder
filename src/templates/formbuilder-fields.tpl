@@ -92,4 +92,4 @@
 
     </ul>
 
-    <button id="save" class="button success">Save Form</button>
+    <button id="save" class="button success">{localize_i18n.buttons.save}</button>

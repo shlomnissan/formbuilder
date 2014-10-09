@@ -10,21 +10,21 @@
 		<div class="choice checkbox disabled">
 		  <label>
 		    <input type="checkbox" class="option-1" name="element-{position}-choice" value="First Choice" disabled>
-		    <span class="choice-label">First Choice</span>
+		    <span class="choice-label">{localize_i18n.placeholders.first}</span>
 		  </label>
 		</div>
 
 		<div class="choice checkbox disabled">
 		  <label>
 		    <input type="checkbox" class="option-2" name="element-{position}-choice" value="Second Choice" disabled>
-		    <span class="choice-label">Second Choice</span>
+		    <span class="choice-label">{localize_i18n.placeholders.second}</span>
 		  </label>
 		</div>
 
 		<div class="choice checkbox disabled">
 		  <label>
 		    <input type="checkbox" class="option-3" name="element-{position}-choice" value="Third Choice" disabled>
-		    <span class="choice-label">Third Choice</span>
+		    <span class="choice-label">{localize_i18n.placeholders.third}</span>
 		  </label>
 		</div>
 

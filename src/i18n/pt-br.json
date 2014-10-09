@@ -1,0 +1,36 @@
+{
+  "formName":         "Nome do formulário",
+  "description_form": "Por favor preencha este campo.",
+  "untitled":         "Sem título",
+  "loading":          "Carregando",
+  "tabs": {
+    "addfield":       "Adicionar",
+    "settings":       "Configurações",
+    "form":           "Geral"
+  },        
+  "fields": {       
+    "text":           "Texto",
+    "number":         "Número",
+    "paragraph":      "Parágrafo",
+    "dropdown":       "Combobox",
+    "chebox":         "Checkbox"
+  }, 
+  "field_options": {     
+    "title":          "Título",
+    "label":          "Labelasdf",
+    "choices":        "Escolhas",
+    "options":        "Opções",
+    "required":       "Obrigatório",
+    "description":    "Descrição"
+  },     
+  "placeholders": {     
+    "first":          "Primeiro",
+    "second":         "Segundo",
+    "third":          "Terceiro"
+  },   
+  "buttons": {     
+    "save":           "Salvar",
+    "remove":         "Remover",
+    "add":            "Adicionar"
+  }    
+} 

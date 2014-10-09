@@ -1,0 +1,36 @@
+{
+  "formName":         "My form",
+  "description_form": "Please, fill it out.",
+  "untitled":         "Untitled",
+  "loading":          "Loading",
+  "tabs": {
+    "addfield":       "Add Field",
+    "settings":       "Field Settings",
+    "form":           "Form Settings"
+  },        
+  "fields": {       
+    "text":           "Text",
+    "number":         "Number",
+    "paragraph":      "Paragraph",
+    "dropdown":       "Dropdown",
+    "chebox":         "Checkbox"
+  }, 
+  "field_options": {    
+    "title":          "Title",
+    "label":          "Field label",
+    "choices":        "Choices",
+    "options":        "Options",
+    "required":       "Required",
+    "description":    "Description"
+  },     
+  "placeholders": {    
+    "first":          "First",
+    "second":         "Second",
+    "third":          "Third"
+  },   
+  "buttons": {     
+    "save":           "Save form",
+    "remove":         "Remove",
+    "add":            "Add Field"
+  }    
+} 
