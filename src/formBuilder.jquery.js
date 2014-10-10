@@ -487,6 +487,7 @@
 			$('#sortable-elements li').each(function(i){
 
 				var element = {
+					'component_id': $(this).data('id'),
 					'title': $(this).data('label'),
 					'type': $(this).data('type'),
 					'required': $(this).hasClass('required') ? true : false,
