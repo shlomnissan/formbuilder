@@ -3,6 +3,7 @@
   "description_form": "Por favor preencha este campo.",
   "untitled":         "Sem título",
   "loading":          "Carregando",
+  "remove_error":     "Você não pode remover este campo! É obrigatório pelo menos 1 campo para este formulário.",
   "tabs": {
     "addfield":       "Adicionar",
     "settings":       "Configurações",

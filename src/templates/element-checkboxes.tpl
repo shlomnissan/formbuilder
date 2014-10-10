@@ -1,4 +1,4 @@
-<li class="form-element {#required}required{/required}" id="element-{position}" data-label="{label}" data-position="{position}" data-type="element-checkboxes">
+<li class="form-element {#required}required{/required}" id="element-{position}" data-label="{label}" data-id="{id}" data-position="{position}" data-type="element-checkboxes">
 
 	<label>
 		<span class="label-title">{label}</span>

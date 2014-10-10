@@ -3,6 +3,8 @@
   "description_form": "Please, fill it out.",
   "untitled":         "Untitled",
   "loading":          "Loading",
+  "remove_error":     "Unable to delete this field! You must have at least 1 field in your form.",
+
   "tabs": {
     "addfield":       "Add Field",
     "settings":       "Field Settings",

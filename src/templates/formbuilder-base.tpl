@@ -1,11 +1,12 @@
+
 <div class="container form-container">
 
-  <div class="left-col" id="toolbox-col" style="padding-top: 37px">
+  <div class="col-sm-6 left-col" id="toolbox-col" style="padding-top: 11px">
 
-    <ul class="nav-tabs" role="tablist">
-      <li class="active toolbox-tab" data-target="#add-field">{localize_i18n.tabs.addfield}</li>
-      <li class="toolbox-tab" data-target="#field-settings">{localize_i18n.tabs.settings}</li>
-      <li class="toolbox-tab" data-target="#form-settings">{localize_i18n.tabs.form}</li>
+    <ul class="nav nav-tabs font-bold" role="tablist">
+      <li class="active" data-target="#add-field" ><a href="" data-toggle="tab">{localize_i18n.tabs.addfield}</a></li>
+      <li data-target="#field-settings"><a href="" data-toggle="tab">{localize_i18n.tabs.settings}</a></li>
+      <li data-target="#form-settings" data-toggle="tab"><a href="" data-toggle="tab">{localize_i18n.tabs.form}</a></li>
     </ul>
 
     <div class="tab-content">
@@ -13,14 +14,14 @@
       <div class="tab-pane active" style="padding: 20px;" id="add-field">
 
         <div class="col-sm-6">
-          <button class="button new-element" data-type="element-single-line-text" style="width: 100%;">{localize_i18n.fields.text}</button>
-          <button class="button new-element" data-type="element-paragraph-text" style="width: 100%;">{localize_i18n.fields.paragraph}</button>
-          <button class="button new-element" data-type="element-checkboxes" style="width: 100%;">{localize_i18n.fields.chebox}</button>
+          <button class="button new-element" data-type="element-single-line-text" style="width: 100%;"><i class="fa fa-font"></i> {localize_i18n.fields.text}</button>
+          <button class="button new-element" data-type="element-paragraph-text" style="width: 100%;"><i class="fa fa-align-left"></i> {localize_i18n.fields.paragraph}</button>
+          <button class="button new-element" data-type="element-checkboxes" style="width: 100%;"><i class="fa fa-square-o"></i> {localize_i18n.fields.chebox}</button>
         </div>
 
         <div class="col-sm-6">
-          <button class="button new-element" data-type="element-number" style="width: 100%;">{localize_i18n.fields.number}</button>
-          <button class="button new-element" data-type="element-multiple-choice" style="width: 100%;">{localize_i18n.fields.dropdown}</button>
+          <button class="button new-element" data-type="element-number" style="width: 100%;">123 {localize_i18n.fields.number}</button>
+          <button class="button new-element" data-type="element-multiple-choice" style="width: 100%;"><i class="fa fa-dot-circle-o"></i> {localize_i18n.fields.dropdown}</button>
         </div>
 
       </div>
@@ -30,7 +31,7 @@
         <div class="section">
           <div class="form-group">
             <label>{localize_i18n.field_options.label}</label>
-            <input type="text" class="form-control" id="field-label" value="{localize_i18n.untitled}" />
+            <input type="text" class="form-control" id="field-label" value="Untitled" />
           </div>
         </div>
 
@@ -81,7 +82,7 @@
 
   </div>
 
-  <div class="right-col" id="form-col">
+  <div class="col-sm-6 right-col " id="form-col">
 
     <div class="loading">
       {localize_i18n.loading}...
