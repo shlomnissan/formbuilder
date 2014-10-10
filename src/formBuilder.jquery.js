@@ -7,6 +7,10 @@
 (function($) {
 	var serialize = function (){};
 
+	$.fn.formBuilderSerialized = function() {
+		return serialize();
+	}
+	
 	$.fn.formBuilder = function(options) {
 		
 		// Set default settings
@@ -22,6 +26,14 @@
 		/*******************************************************/
 		/*	Fields and Tabs
 		/*******************************************************/
+
+		var fields_id = {
+			elementsinglelinetext: 1,
+			elementnumber:2,
+			elementparagraphtext:3,
+			elementmultiplechoice: 4,
+			elementcheckboxes: 5
+		}
 
 		/*
 			fieldAdd
@@ -42,9 +54,11 @@
 					}
 				});
 
-				var tpl = $(this).data('type');
+				var tpl 	   =  $(this).data('type');
+				var cod_fields =  $(this).data('type').replace(/-/g, "");
 
 				var data = {
+					'id':fields_id[cod_fields],
 					'label': localize_i18n.untitled,
 					'position': $('.form-element').length - 1, 
 					'localize_i18n': localize_i18n
@@ -299,7 +313,7 @@
 						currentlySelected = '';
 						clearSelectedElements();
 					} else {
-						alert('Unable to delete this field! You must have at least 1 field in your form.');
+						alert(localize_i18n.remove_error);
 					}
 	
 				}
@@ -504,10 +518,8 @@
 			});
 			
 
-			var serialized = JSON.stringify(formData);
-
 			// Process the form data here...
-			return serialized
+			return formData
 		}
 
 		var save = function(serialized) {};
@@ -647,9 +659,5 @@
 
 	} // End plugin Formbuilder
 
-
-	$.fn.formBuilderSerialized = function() {
-		return serialize();
-	}
 
 }(jQuery));
