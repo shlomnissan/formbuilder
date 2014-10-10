@@ -5,13 +5,15 @@
  */
 
 (function($) {
-	
+	var serialize = function (){};
+
 	$.fn.formBuilder = function(options) {
 		
 		// Set default settings
 		var settings = $.extend({
 			load_url: '/',
 			save_url: '/',
+			callback: function() {},
 			locale:'default',
 			title_form:''
         }, options);
@@ -458,7 +460,7 @@
 			serialize
 			Serialize form elements into a JSON string
 		*/
-		var serialize = function() {
+		serialize = function() {
 			
 			var formData = {};
 			
@@ -505,10 +507,10 @@
 			var serialized = JSON.stringify(formData);
 
 			// Process the form data here...
-			alert(serialized);
-
+			return serialized
 		}
 
+		var save = function(serialized) {};
 
 		/*******************************************************/
 		/*	Entry Point
@@ -643,6 +645,11 @@
 
 		///
 
-	} // End plugin
+	} // End plugin Formbuilder
+
+
+	$.fn.formBuilderSerialized = function() {
+		return serialize();
+	}
 
 }(jQuery));
