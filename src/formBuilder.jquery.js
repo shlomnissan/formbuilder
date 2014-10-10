@@ -12,14 +12,14 @@
 		var settings = $.extend({
 			load_url: '/',
 			save_url: '/',
-			locale:'default'
+			locale:'default',
+			title_form:''
         }, options);
 
 
 		/*******************************************************/
 		/*	Fields and Tabs
 		/*******************************************************/
-
 
 		/*
 			fieldAdd
@@ -28,7 +28,8 @@
 		var fieldAdd = function() {
 
 			// Bind new field buttons
-			$('.new-element').click(function(){
+			$('.new-element').click(function(event){
+				event.preventDefault();
 
 				clearSelectedElements();
 
@@ -76,7 +77,8 @@
 			$('.form-element').unbind();
 
 			// Form element clicked
-			$('.form-element').click(function(){
+			$('.form-element').click(function(event){
+				event.preventDefault();
 
 				// Remove selected class from all elements
 				clearSelectedElements();
@@ -108,7 +110,8 @@
 		var tabSelect = function() {
 
 			// Switch tabs
-			$('.toolbox-tab').click(function(){
+			$('.toolbox-tab').click(function(event){
+				event.preventDefault();
 
 				clearSelectedElements();
 
@@ -164,7 +167,8 @@
 		*/
 		var bindButtons = function () {
 			$('.option').unbind();
-			$('.option').click(function(){
+			$('.option').click(function(event){
+				event.preventDefault();
 				var target = $(this).parent().next('input').data('bind');
 				$(currentlySelected).find(target).prop( "checked", function( i, val ) {
 					return !val;
@@ -281,7 +285,8 @@
 		var controlSettings = function() {
 
 			// Remove field
-			$('#control-remove-field').click(function(){
+			$('#control-remove-field').click(function(event){
+				event.preventDefault();
 				
 				if( currentlySelected != '' ) {
 					
@@ -299,7 +304,8 @@
 
 			});
 
-			$('#control-add-field').click(function(){
+			$('#control-add-field').click(function(event){
+				event.preventDefault();
 				tabs.showTab('#add-field');
 				currentlySelected = '';
 				clearSelectedElements();
@@ -316,7 +322,8 @@
 			
 			// Remove choice
 			$('.remove-choice').unbind();
-			$('.remove-choice').click(function(){
+			$('.remove-choice').click(function(event){
+				event.preventDefault();
 
 				if( $(this).parent().parent().children('.choice').length > 1 ) {
 					
@@ -336,7 +343,8 @@
 
 			// Add Choice
 			$('.add-choice').unbind();
-			$('.add-choice').click(function(){
+			$('.add-choice').click(function(event){
+				event.preventDefault();
 				
 				// Get the choice count
 				var lastChoice = 2;
@@ -561,7 +569,6 @@
 			},       
 		}   
 
-
 		// Load locale
 		if (settings.locale != "default"){
 			$.ajax({
@@ -581,7 +588,6 @@
 			localize_i18n: localize_i18n
 		};
 
-	
 		dust.render('formbuilder-base', base, function(err, out) {
 			$('#wf-form-builder').append(out);
 		});
@@ -589,6 +595,12 @@
 		// Get data
 		$.getJSON( settings.load_url, function( data ) {
 			
+
+			//Changes de default title
+			if (settings.title != ''){
+				data['title'] = settings.title_form; 
+			}
+
 			// Load the base template
 			base = {
 				form: data,
@@ -618,7 +630,8 @@
 
 					tabs = $('.nav-tabs').tabs();
 
-					$('#save').click(function(){
+					$('#save').click(function(event){
+						event.preventDefault();
 						serialize();
 					});
 

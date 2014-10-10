@@ -17,7 +17,7 @@
   }, 
   "field_options": {     
     "title":          "Título",
-    "label":          "Labelasdf",
+    "label":          "Label",
     "choices":        "Escolhas",
     "options":        "Opções",
     "required":       "Obrigatório",
