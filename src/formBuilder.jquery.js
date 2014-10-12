@@ -57,7 +57,6 @@
 					tabs.showTab('#field-settings');
 
 					bindSettings();
-					resizeLeftColumn();
 		    	});
 
 			});
@@ -484,18 +483,6 @@
 
 		}
 
-		var resizeLeftColumn = function() {
-			
-			var right_col = $('.right-col').height();
-			var left_col = $('.left-col').height();
-
-			if( right_col > left_col ) {
-				offset = 0;
-				$('.left-col').height(right_col+offset);
-			}
-
-		}
-
 		/*
 			reorderElements
 			Update element id based on position
@@ -655,8 +642,6 @@
 					$('#save').click(function(){
 						serialize();
 					});
-
-					resizeLeftColumn();
 
 				});
 
