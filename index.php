@@ -9,7 +9,7 @@
     <title>jQuery Form Builder v3.0</title>
     
     <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
     
     <link rel="stylesheet" href="src/css/style.css">
 
@@ -24,7 +24,7 @@
       <div id="footer">
 
         <p>
-        “As we enjoy great advantages from the inventions of others, we should be glad of an opportunity to serve others by any invention of ours; and this we should do freely and generously.”
+          “As we enjoy great advantages from the inventions of others, we should be glad of an opportunity to serve others by any invention of ours; and this we should do freely and generously.”
         </p>
 
         Crafted with love by <a href="#">1ByteBeta</a>

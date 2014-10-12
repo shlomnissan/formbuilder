@@ -21,6 +21,7 @@
         <div class="col-sm-6">
           <button class="button new-element" data-type="element-number" style="width: 100%;">Number</button>
           <button class="button new-element" data-type="element-multiple-choice" style="width: 100%;">Multiple Choice</button>
+          <button class="button new-element" data-type="element-dropdown" style="width: 100%;">Dropdown</button>
         </div>
 
       </div>

@@ -84,6 +84,28 @@
 
             {/eq}
 
+            <!-- Dropdown -->
+
+            {@eq key="{type}" value="element-dropdown"}
+
+              <li class="form-element {#required}required{/required}" id="element-{position}" data-label="{title}" data-position="{position}" data-type="element-dropdown">
+                <label>
+                  <span class="label-title">{title}</span>
+                  {#required}<span class="required-star"> *</span>{/required}
+                </label>
+                <select style="width: 50%" class="choices" data-type="settings-dropdown" disabled>
+
+                  {#choices}
+
+                    <option class="option-{@idx}{.}{/idx}" value="{value}" {#checked}selected{/checked}><span class="choice-label">{title}</span></option>
+
+                  {/choices}
+
+                </select>
+              </li>
+
+            {/eq}
+
           {/fields}
 
         </ul>

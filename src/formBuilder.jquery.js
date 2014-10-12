@@ -146,7 +146,14 @@
 					if(currentlySelected == '') {
 						$(target).html($(this).val());
 					} else {
-						currentlySelected.find(target).next('.choice-label').html($(this).val());
+
+						if( currentlySelected.data('type') != 'element-dropdown' ) {
+							currentlySelected.find(target).next('.choice-label').html($(this).val());
+						} else {
+
+							currentlySelected.find(target).html($(this).val());
+						}
+						
 					}
 
 				  	
@@ -162,11 +169,16 @@
 		*/
 		var bindButtons = function () {
 			$('.option').unbind();
+			
 			$('.option').click(function(){
+
 				var target = $(this).parent().next('input').data('bind');
-				$(currentlySelected).find(target).prop( "checked", function( i, val ) {
+				var value = ( $(currentlySelected).data('type') != 'element-dropdown' ) ? 'checked' : 'selected';
+
+				$(currentlySelected).find(target).prop( value, function( i, val ) {
 					return !val;
 				});
+
 			});
 		}
 
@@ -188,19 +200,42 @@
 			});
 
 			// Choices
-			if(currentlySelected.data('type') == 'element-multiple-choice' || currentlySelected.data('type') == 'element-checkboxes') {
-
+			if(currentlySelected.data('type') == 'element-multiple-choice' || currentlySelected.data('type') == 'element-checkboxes' || currentlySelected.data('type') == 'element-dropdown') {
 
 				$('#field-choices').css('display', 'block');
 				$('#field-choices').html('<div class="form-group"><label>Choices</label></div>');
 
 				var choices = [];
 
-				currentlySelected.children('.choices').children('.choice').each(function(i){
+				var items = currentlySelected.children('.choices').children('.choice');
 
-					var checked = $(this).children('label').children('input').is(':checked') ? true : false;
-					var bindingClass = $(this).children('label').children('input').attr('class');
-					var title = $(this).children('label').children('.choice-label').html();
+				if( currentlySelected.data('type') == 'element-dropdown' ) {
+					items = currentlySelected.children('.choices').children('option');
+				}
+
+				console.log(items);
+
+				items.each(function(i){
+
+					if( currentlySelected.data('type') != 'element-dropdown' ) {
+
+						// Radio buttons, checkboxes
+
+						var checked = $(this).children('label').children('input').is(':checked') ? true : false;
+						var bindingClass = $(this).children('label').children('input').attr('class');
+						var title = $(this).children('label').children('.choice-label').html();
+
+					} else {
+
+						// Dropdown
+
+						var title = $(this).val();
+						var bindingClass = $(this).attr('class');
+						var checked = $(this).is(':selected') ? true : false;
+
+					}
+
+					
 
 					var data = {
 						'checked':checked,
@@ -216,6 +251,8 @@
 				var data = {
 					"choices":choices
 				}
+
+				console.log(data);
 
 				// Render the choices
 
@@ -319,7 +356,12 @@
 					
 					// Delete choice from form
 					var deleteItem = $(this).data('delete');
-					$(currentlySelected).find(deleteItem).parent().parent().remove();
+
+					if($(currentlySelected).data('type') == 'element-dropdown') {
+						$(currentlySelected).find(deleteItem).remove();
+					} else {
+						$(currentlySelected).find(deleteItem).parent().parent().remove();
+					}
 
 					// Delete choice from settings
 					$(this).parent().remove();
@@ -338,9 +380,24 @@
 				// Get the choice count
 				var lastChoice = 2;
 
-				$(currentlySelected.children('.choices').children('.choice')).each(function(i){
+				// Dropdown
+				if( currentlySelected.data('type') == 'element-dropdown' ) {
+					var items = currentlySelected.children('.choices').children('option');
+				} else {
+					var items = currentlySelected.children('.choices').children('.choice');
+				}
 
-					var choiceString = $(this).find('input').attr('class');
+				console.log(items);
+
+				$(items).each(function(i){
+
+					if( currentlySelected.data('type') == 'element-dropdown' ) {
+						var choiceString = $(this).attr('class');
+					} else {
+						var choiceString = $(this).find('input').attr('class');
+					}
+
+					
 					var choiceSplit = choiceString.split('-');
 					if( lastChoice < choiceSplit[1] ) {
 						lastChoice = choiceSplit[1];
@@ -373,6 +430,10 @@
 						template = 'choice-checkbox';
 					}
 
+					if( currentlySelected.data('type') == 'element-dropdown') {
+						template = 'choice-dropdown';
+					}
+
 
 					var elementId = currentlySelected.attr('id').replace('element-','');
 
@@ -383,6 +444,8 @@
 						'lastChoice': lastChoice,
 						'elementId': elementId
 					}
+
+					console.log(data);
 
 					dust.render(template, data, function(err, out) {
 						currentlySelected.children('.choices').append(out);
@@ -466,23 +529,43 @@
 				}
 
 				// If element has multiple choices
-				if( element['type'] == 'element-multiple-choice' || element['type'] == 'element-checkboxes'  ) {
+				if( element['type'] == 'element-multiple-choice' || element['type'] == 'element-checkboxes' ||  element['type'] == 'element-dropdown' ) {
 
 					var choices = [];
 
-					$(this).find('.choices').children('.choice').each(function(index){
+					if( element['type'] == 'element-dropdown') {
 
-						var choice = {
-							'title': $(this).children('label').children('.choice-label').html(),
-							'value': $(this).children('label').children('.choice-label').html(),
-							'checked': $(this).children('label').children('input').is(':checked') ? true : false,
-						}
+						// Collect choices for dropdown
+						$(this).find('.choices').children('option').each(function(index){
 
-						choices.push(choice);
-						element['choices'] = choices;
+							var choice = {
+								'title': $(this).val(),
+								'value': $(this).val(),
+								'checked': $(this).is(':selected') ? true : false,
+							}
 
-					});
+							choices.push(choice);
+							element['choices'] = choices;
 
+						});
+
+					} else {
+
+						// Collect choices for radio/checkboxes
+						$(this).find('.choices').children('.choice').each(function(index){
+
+							var choice = {
+								'title': $(this).children('label').children('.choice-label').html(),
+								'value': $(this).children('label').children('.choice-label').html(),
+								'checked': $(this).children('label').children('input').is(':checked') ? true : false,
+							}
+
+							choices.push(choice);
+							element['choices'] = choices;
+
+						});
+
+					}
 
 				}
 
