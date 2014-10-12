@@ -1,6 +1,6 @@
 <div class="container form-container">
 
-  <div class="left-col" id="toolbox-col" style="padding-top: 37px">
+  <div class="left-col" id="toolbox-col" style="padding-top: 18px">
 
     <ul class="nav-tabs" role="tablist">
       <li class="active toolbox-tab" data-target="#add-field">Add a Field</li>

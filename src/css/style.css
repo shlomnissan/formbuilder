@@ -5,25 +5,16 @@
   transition: all 0.1s ease-in;
 }
 .form-container {
-  font-family: 'Source Code Pro', serif;
   width: 1050px;
-  background-color: #f1f1f1;
   border: 1px solid #cdcdcd;
   margin: 0 auto;
   border-radius: 3px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
 }
-.form-container h1,
-.form-container h2,
-.form-container h3,
-.form-container h4,
-.form-container h5 {
-  text-transform: uppercase;
-  font-family: 'Lato', sans-serif;
-}
-.form-container h5 {
-  color: #4a4a4a;
+.form-container h3 {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 .form-container input[type='text'],
 .form-container input[type='number'] {
@@ -33,7 +24,6 @@
   border-radius: 3px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
-  font-family: 'Source Code Pro';
   font-size: 14px;
   text-indent: 10px;
 }
@@ -43,7 +33,6 @@
   border-radius: 3px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
-  font-family: 'Source Code Pro';
   font-size: 14px;
   padding: 10px;
   resize: none;
@@ -57,8 +46,6 @@
   -webkit-border-radius: 4px;
   border: none;
   font-size: 15px;
-  text-transform: uppercase;
-  font: 'Lato';
   cursor: pointer;
   margin-bottom: 5px;
 }
@@ -98,9 +85,7 @@
   min-height: 600px;
 }
 .form-container .left-col .form-group label {
-  font-family: 'Lato';
   font-weight: bold;
-  text-transform: uppercase;
   font-size: 15px;
   margin-top: 10px;
   margin-bottom: 8px;
@@ -212,8 +197,6 @@
   color: #4a90e2;
   list-style-type: none;
   display: inline-block;
-  font-family: 'Lato';
-  text-transform: uppercase;
   padding: 10px 15px;
   font-size: 14px;
   font-weight: bolder;
@@ -234,7 +217,6 @@
   top: 1px;
 }
 #footer {
-  font-family: 'Lato';
   width: 600px;
   text-align: center;
   margin: 0 auto;

@@ -3,7 +3,7 @@
       {#form}
       <li class="form-element" id="form-settings-element" data-type="form-settings">
         <h2 id="form-title-label">{title}</h2>
-        <h5 id="form-description-label">{description}</h5>
+        <h3 id="form-description-label">{description}</h5>
       </li>
 
         <ul id="sortable-elements">

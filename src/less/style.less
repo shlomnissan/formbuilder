@@ -10,9 +10,6 @@
 @button-red: #D0021B;
 @button-red-selected: #AB0015;
 
-@font-source: 'Source Code Pro';
-@font-lato: 'Lato';
-
 .round-corners(@radius) {
   border-radius: @radius;
   -moz-border-radius: @radius;
@@ -28,13 +25,9 @@
 
 .form-container {
 
-	h1, h2, h3, h4, h5 {
-		text-transform: uppercase;
-		font-family: @font-lato, sans-serif;
-	}
-
-	h5 {
-		color: @light-gray;
+	h3 {
+		margin-top: 0px;
+		margin-bottom: 0px;
 	}
 
 	input[type='text'], input[type='number'] {
@@ -42,7 +35,6 @@
  		width: 99%;
  		border: 1px solid @border-color;
  		.round-corners(3px);
- 		font-family: @font-source;
  		font-size: 14px;
  		text-indent: 10px;
  	}
@@ -50,7 +42,6 @@
  		width: 95%;
  		border: 1px solid @border-color;
  		.round-corners(3px);
- 		font-family: @font-source;
  		font-size: 14px;
  		padding: 10px;
  		resize: none;
@@ -63,8 +54,6 @@
 		.round-corners(4px);
 		border: none;
 		font-size: 15px;
-		text-transform: uppercase;
-		font: @font-lato;
 		cursor: pointer;
 		margin-bottom: 5px;
 	}
@@ -91,11 +80,9 @@
 		.animate;
 		background-color: @button-red-selected;
 	}
-
-	font-family: @font-source, serif;
 	
 	width: 1050px;
-	background-color: @background-color;
+
  	border: 1px solid @border-color;
  	margin: 0 auto;
  	.round-corners(3px);
@@ -105,16 +92,14 @@
 
  		width: 415px;
  		float:left;
-
+ 		
  		border: 1px solid @border-color;
  		border-width: 0 1px 0 0px;
  		padding-bottom: 50px;
  		min-height: 600px;
 
  		.form-group label {
- 			font-family: @font-lato;
  			font-weight: bold;
- 			text-transform: uppercase;
  			font-size: 15px;
  			margin-top: 10px;
  			margin-bottom: 8px;
@@ -248,8 +233,6 @@
 		color: @button-blue;
 		list-style-type: none;
 		display: inline-block;
-		font-family: @font-lato;
-		text-transform: uppercase;
 		padding: 10px 15px;
 		font-size: 14px;
 		font-weight: bolder;
@@ -276,7 +259,6 @@
 
 #footer {
 	
-	font-family: @font-lato;
 	width: 600px;
 	text-align: center;
 	margin: 0 auto;
