@@ -12,30 +12,13 @@
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
 }
+.form-container hr {
+  border: 1px solid #cdcdcd;
+  border-width: 1px 0 0 0;
+}
 .form-container h3 {
   margin-top: 0px;
   margin-bottom: 0px;
-}
-.form-container input[type='text'],
-.form-container input[type='number'] {
-  height: 30px;
-  width: 99%;
-  border: 1px solid #cdcdcd;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  font-size: 14px;
-  text-indent: 10px;
-}
-.form-container textarea {
-  width: 95%;
-  border: 1px solid #cdcdcd;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  font-size: 14px;
-  padding: 10px;
-  resize: none;
 }
 .form-container .button {
   background-color: #4a90e2;

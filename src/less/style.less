@@ -24,28 +24,16 @@
 }
 
 .form-container {
+	
+	hr {
+		border: 1px solid @border-color;
+		border-width: 1px 0 0 0;
+	}
 
 	h3 {
 		margin-top: 0px;
 		margin-bottom: 0px;
 	}
-
-	input[type='text'], input[type='number'] {
- 		height: 30px;
- 		width: 99%;
- 		border: 1px solid @border-color;
- 		.round-corners(3px);
- 		font-size: 14px;
- 		text-indent: 10px;
- 	}
- 	textarea {
- 		width: 95%;
- 		border: 1px solid @border-color;
- 		.round-corners(3px);
- 		font-size: 14px;
- 		padding: 10px;
- 		resize: none;
- 	}
 
 	.button {
 		background-color: @button-blue;

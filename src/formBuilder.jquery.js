@@ -57,6 +57,7 @@
 					tabs.showTab('#field-settings');
 
 					bindSettings();
+					repositionToolbox();
 		    	});
 
 			});
@@ -91,6 +92,7 @@
 					tabs.showTab('#field-settings');
 					currentlySelected = $(this);
 					bindSettings();
+					repositionToolbox();
 
 				}
 
@@ -117,6 +119,7 @@
 					$('#element-0').addClass('selected');
 					currentlySelected = $('#element-0');
 					bindSettings();
+					repositionToolbox();
 				}
 
 			});
@@ -468,7 +471,20 @@
 		/*	Helpers
 		/*******************************************************/
 
-		
+
+		/*
+			repositionToolbox
+			Change the position of the toolbox based on active selection
+		*/
+		var repositionToolbox = function() {
+			topOffset = currentlySelected.position().top;
+			toolboxOffset = 115;
+			offset = topOffset - toolboxOffset;
+			$('#field-settings').css('padding-top', offset + 'px');
+
+		}
+
+
 		/*
 			clearSelectedElements
 			Remove currently selected element

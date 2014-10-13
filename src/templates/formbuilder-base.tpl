@@ -15,14 +15,26 @@
         <div class="col-sm-6">
           <button class="button new-element" data-type="element-single-line-text" style="width: 100%;">Single Line Text</button>
           <button class="button new-element" data-type="element-paragraph-text" style="width: 100%;">Paragraph Text</button>
-          <button class="button new-element" data-type="element-checkboxes" style="width: 100%;">Checkboxes</button>
+          <button class="button new-element" data-type="element-multiple-choice" style="width: 100%;">Multiple Choice</button>
+          <!-- <button class="button new-element" data-type="element-section-break" style="width: 100%;">Section Break</button> -->
         </div>
 
         <div class="col-sm-6">
           <button class="button new-element" data-type="element-number" style="width: 100%;">Number</button>
-          <button class="button new-element" data-type="element-multiple-choice" style="width: 100%;">Multiple Choice</button>
+          <button class="button new-element" data-type="element-checkboxes" style="width: 100%;">Checkboxes</button>
           <button class="button new-element" data-type="element-dropdown" style="width: 100%;">Dropdown</button>
         </div>
+
+        <div style="clear:both"></div>
+
+        <div class="col-sm-12">
+          <hr/>
+        </div>
+
+        <div class="col-sm-6">
+          <button class="button new-element" data-type="element-email" style="width: 100%;">Email</button>
+        </div>
+        <!--  -->
 
       </div>
 
