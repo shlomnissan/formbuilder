@@ -16,7 +16,7 @@
 
     <div style="margin-top: 20px">
 
-      <div id="wf-form-builder"></div>
+      <div id="formBuilder"></div>
 
       <div id="footer">
 

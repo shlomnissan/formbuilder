@@ -616,12 +616,13 @@
 		  });
 		};
 		
-		var base = {
+		var base = {};
 
-		};
+		//
+		var obj = this;
 
 		dust.render('formbuilder-base', base, function(err, out) {
-			$('#wf-form-builder').append(out);
+			obj.append(out);
 		});
 
 		// Get data
