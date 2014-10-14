@@ -611,7 +611,7 @@
 			var serialized = JSON.stringify(formData);
 
 			// Process the form data here...
-			alert(serialized);
+			return serialized;
 
 		}
 
@@ -678,7 +678,21 @@
 					tabs = $('.nav-tabs').tabs();
 
 					$('#save').click(function(){
-						serialize();
+						
+						var form_data = serialize();
+
+						$.ajax({
+							
+							type: "POST",
+							url: settings.save_url,
+							data: {formData: form_data},
+							
+							success: function () { 
+								alert('You form has been saved successfully!');
+							}
+
+						});
+
 					});
 
 				});

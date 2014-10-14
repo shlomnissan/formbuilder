@@ -47,7 +47,8 @@
     <script>
 
       $('#formBuilder').formBuilder({
-        load_url: '/src/json/example.json'
+        load_url: '/src/json/example.json',
+        save_url: '/demo/save.php'
       });
 
     </script>
