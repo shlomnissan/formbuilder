@@ -9,6 +9,8 @@
 @button-green-selected: #6E9900;
 @button-red: #D0021B;
 @button-red-selected: #AB0015;
+@button-grey: #B9CDD2;
+@button-grey-selected: #A0B4BB;
 
 .round-corners(@radius) {
   border-radius: @radius;
@@ -68,6 +70,14 @@
 		.animate;
 		background-color: @button-red-selected;
 	}
+
+	.button.grey {
+		background-color: @button-grey;
+	}
+	.button.grey:hover {
+		.animate;
+		background-color: @button-grey-selected;
+	}
 	
 	width: 1050px;
 
@@ -126,12 +136,36 @@
  			margin-top: 50%;
  		}
 
+ 		.section-break {
+
+ 			margin: 25px !important;
+
+ 			padding: 0px !important;
+ 			border: none !important;
+ 			width: 571px !important;
+
+ 			label {
+ 				font-size: 20px !important;
+ 				padding: 10px;
+ 				padding-bottom: 0px;
+ 				margin-bottom: 0px !important;
+ 			}
+
+ 			p {
+ 				margin-top: 0px;
+ 				padding: 10px;
+ 				padding-top: 0px;
+ 			}
+
+ 		}
+
  		#form-elements, #sortable-elements {
 			padding: 0px;
 			margin: 0px;	
 		}
 
  		.form-element {
+
  			position: relative;
  			list-style-type: none;
 			cursor: pointer;

@@ -59,6 +59,16 @@
   transition: all 0.1s ease-in;
   background-color: #ab0015;
 }
+.form-container .button.grey {
+  background-color: #b9cdd2;
+}
+.form-container .button.grey:hover {
+  -moz-transition: all 0.1s ease-in;
+  -webkit-transition: all 0.1s ease-in;
+  -o-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
+  background-color: #a0b4bb;
+}
 .form-container .left-col {
   width: 415px;
   float: left;
@@ -100,6 +110,23 @@
   width: 100%;
   text-align: center;
   margin-top: 50%;
+}
+.form-container .right-col .section-break {
+  margin: 25px !important;
+  padding: 0px !important;
+  border: none !important;
+  width: 571px !important;
+}
+.form-container .right-col .section-break label {
+  font-size: 20px !important;
+  padding: 10px;
+  padding-bottom: 0px;
+  margin-bottom: 0px !important;
+}
+.form-container .right-col .section-break p {
+  margin-top: 0px;
+  padding: 10px;
+  padding-top: 0px;
 }
 .form-container .right-col #form-elements,
 .form-container .right-col #sortable-elements {

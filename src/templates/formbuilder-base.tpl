@@ -16,7 +16,7 @@
           <button class="button new-element" data-type="element-single-line-text" style="width: 100%;">Single Line Text</button>
           <button class="button new-element" data-type="element-paragraph-text" style="width: 100%;">Paragraph Text</button>
           <button class="button new-element" data-type="element-multiple-choice" style="width: 100%;">Multiple Choice</button>
-          <button class="button new-element" data-type="element-section-break" style="width: 100%;">Section Break</button>
+          <button class="button grey new-element" data-type="element-section-break" style="width: 100%;">Section Break</button>
         </div>
 
         <div class="col-sm-6">
@@ -27,6 +27,7 @@
 
         <div style="clear:both"></div>
 
+        <!--
         <div class="col-sm-12">
           <hr/>
         </div>
@@ -34,7 +35,7 @@
         <div class="col-sm-6">
           <button class="button new-element" data-type="element-email" style="width: 100%;">Email</button>
         </div>
-        <!--  -->
+        -->
 
       </div>
 
@@ -47,26 +48,40 @@
           </div>
         </div>
 
-         <div class="section" id="field-choices" style="display: none;">
-       
+        <div class="section" id="field-choices" style="display: none;">
+
           <div class="form-group">
-              <label>Choices</label>
+            <label>Choices</label>
           </div>
 
         </div>
 
-        <div class="section">
-        <div class="form-group">
-            <label>Field Options</label>
-        </div>
+        <div class="section" id="field-options"> 
 
-        <div class="field-options">
+          <div class="form-group">
+            <label>Field Options</label>
+          </div>
+
+          <div class="field-options">
             <div class="checkbox">
               <label>
                 <input type="checkbox" id="required">Required
               </label>
             </div>
           </div>
+
+        </div>
+
+        <div class="section" id="field-description"> 
+          
+          <div class="form-group">
+            <label>Field Description</label>
+          </div>
+
+          <div class="field-description">
+            <textarea id="description"></textarea>
+          </div>
+
         </div>
 
         <button class="button danger" id="control-remove-field">Remove</button>&nbsp;

@@ -106,6 +106,18 @@
 
             {/eq}
 
+            <!-- Section Break -->
+
+            {@eq key="{type}" value="element-section-break"}
+
+              <li class="form-element section-break {#required}required{/required}" id="element-{position}" data-label="{title}" data-position="{position}" data-description="{description}" data-type="element-section-break">
+                <hr/>
+                <label class="label-title"><span class="label-title">{title}</label>
+                <p class="description">{description}</p>
+              </li>
+
+            {/eq}
+
           {/fields}
 
         </ul>

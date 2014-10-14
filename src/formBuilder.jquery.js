@@ -58,6 +58,7 @@
 
 					bindSettings();
 					repositionToolbox();
+					isFieldOptions();
 		    	});
 
 			});
@@ -93,7 +94,7 @@
 					currentlySelected = $(this);
 					bindSettings();
 					repositionToolbox();
-
+					isFieldOptions();
 				}
 
 			});
@@ -201,6 +202,18 @@
 
 			});
 
+			// Description
+			if( currentlySelected.data('type') == 'element-section-break' ) {
+				$('#description').val(currentlySelected.children('.description').html());
+			}
+
+			$('#description').on("keyup", function() { 
+
+				currentlySelected.children('.description').html($(this).val());
+				currentlySelected.data('description', $(this).val());
+
+			});
+
 			// Choices
 			if(currentlySelected.data('type') == 'element-multiple-choice' || currentlySelected.data('type') == 'element-checkboxes' || currentlySelected.data('type') == 'element-dropdown') {
 
@@ -297,8 +310,6 @@
 				}
 
 			});
-
-			// Reposition settings pan here...
 
 		}
 
@@ -471,6 +482,15 @@
 		/*	Helpers
 		/*******************************************************/
 
+		var isFieldOptions = function() {
+			if( currentlySelected.data('type') == 'element-section-break' ) {
+				$('#field-options').hide();
+				$('#field-description').show();
+			} else {
+				$('#field-options').show();
+				$('#field-description').hide();
+			}
+		}
 
 		/*
 			repositionToolbox
@@ -539,7 +559,8 @@
 					'title': $(this).data('label'),
 					'type': $(this).data('type'),
 					'required': $(this).hasClass('required') ? true : false,
-					'position': i+1
+					'position': i+1,
+					'description': $(this).data('description')
 				}
 
 				// If element has multiple choices
