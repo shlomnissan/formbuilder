@@ -106,6 +106,36 @@
 
             {/eq}
 
+            <!-- Checkboxes -->
+
+            {@eq key="{type}" value="element-checkboxes"}
+
+              <li class="form-element {#required}required{/required}" id="element-{position}" data-label="{title}" data-position="{position}" data-type="element-checkboxes">
+
+                <label>
+                  <span class="label-title">{title}</span>
+                  {#required}<span class="required-star"> *</span>{/required}
+                </label>
+
+                <div class="choices" data-type="settings-choice-checkbox">
+
+                  {#choices}
+
+                  <div class="choice checkbox disabled">
+                    <label>
+                      <input type="checkbox" class="option-{@idx}{.}{/idx}" {#checked}checked{/checked} name="element-{position}-choice" value="{value}" disabled>
+                      <span class="choice-label">{title}</span>
+                    </label>
+                  </div>
+
+                  {/choices}
+                  
+                </div>
+
+              </li>
+
+            {/eq}
+
             <!-- Section Break -->
 
             {@eq key="{type}" value="element-section-break"}

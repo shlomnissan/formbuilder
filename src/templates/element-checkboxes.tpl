@@ -27,7 +27,7 @@
 		    <span class="choice-label">Third Choice</span>
 		  </label>
 		</div>
-
+		
 	</div>
 
 </li>
