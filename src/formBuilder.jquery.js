@@ -500,8 +500,8 @@
 			topOffset = currentlySelected.position().top;
 			toolboxOffset = 115;
 			offset = topOffset - toolboxOffset;
-			$('#field-settings').css('padding-top', offset + 'px');
-
+			$('#field-settings').css('margin-top', offset + 'px');
+			$('.left-col').css('height','100%');
 		}
 
 
@@ -677,7 +677,7 @@
 
 					tabs = $('.nav-tabs').tabs();
 
-					$('#save').click(function(){
+					$('#save').click(function(e){
 						
 						var form_data = serialize();
 
@@ -688,7 +688,7 @@
 							data: {formData: form_data},
 							
 							success: function () { 
-								alert('You form has been saved successfully!');
+								settings.onSaveForm.call();
 							}
 
 						});

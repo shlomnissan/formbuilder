@@ -5,6 +5,8 @@
   transition: all 0.1s ease-in;
 }
 .form-container {
+  position: relative;
+  min-height: 600px;
   width: 1050px;
   border: 1px solid #cdcdcd;
   margin: 0 auto;
@@ -70,12 +72,13 @@
   background-color: #a0b4bb;
 }
 .form-container .left-col {
+  position: absolute;
   width: 415px;
   float: left;
   border: 1px solid #cdcdcd;
   border-width: 0 1px 0 0px;
-  padding-bottom: 50px;
-  min-height: 600px;
+  height: 100%;
+  padding: 0 !important;
 }
 .form-container .left-col .form-group label {
   font-weight: bold;
@@ -104,7 +107,8 @@
 }
 .form-container .right-col {
   width: 634px;
-  float: left;
+  position: relative;
+  left: 415px;
 }
 .form-container .right-col .loading {
   width: 100%;

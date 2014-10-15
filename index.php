@@ -47,8 +47,15 @@
     <script>
 
       $('#formBuilder').formBuilder({
+        
         load_url: '/src/json/example.json',
-        save_url: '/demo/save.php'
+        save_url: '/demo/save.php',
+        
+        onSaveForm: function() {
+          // redirect to demo page
+          window.location.href = 'demo/render.php';
+        }
+
       });
 
     </script>

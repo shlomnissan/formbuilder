@@ -27,6 +27,9 @@
 
 .form-container {
 	
+	position: relative;
+	min-height: 600px;
+
 	hr {
 		border: 1px solid @border-color;
 		border-width: 1px 0 0 0;
@@ -88,13 +91,13 @@
 
  	.left-col {
 
+ 		position: absolute;
  		width: 415px;
  		float:left;
- 		
  		border: 1px solid @border-color;
  		border-width: 0 1px 0 0px;
- 		padding-bottom: 50px;
- 		min-height: 600px;
+ 		height: 100%;
+ 		padding: 0 !important;
 
  		.form-group label {
  			font-weight: bold;
@@ -128,7 +131,8 @@
  	.right-col {
 
  		width: 634px;
- 		float: left;
+ 		position: relative;
+ 		left: 415px;
 
  		.loading {
  			width: 100%;
