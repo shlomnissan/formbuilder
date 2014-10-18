@@ -6,6 +6,7 @@
         <h3 id="form-description-label">{description}</h5>
       </li>
 
+      <li>
         <ul id="sortable-elements">
 
           {#fields}
@@ -151,6 +152,8 @@
           {/fields}
 
         </ul>
+
+      </li>
 
       {/form}
 
