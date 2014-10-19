@@ -137,6 +137,9 @@
   padding: 0px;
   margin: 0px;
 }
+.form-container .right-col #form-elements li {
+  list-style-type: none;
+}
 .form-container .right-col .form-element {
   position: relative;
   list-style-type: none;
