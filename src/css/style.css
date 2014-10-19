@@ -1,228 +1,67 @@
+/* Variables */
+/* Mixins */
 .animate {
   -moz-transition: all 0.1s ease-in;
   -webkit-transition: all 0.1s ease-in;
   -o-transition: all 0.1s ease-in;
   transition: all 0.1s ease-in;
 }
-.form-container {
-  position: relative;
-  min-height: 600px;
+/* Template */
+#master-container {
   width: 1050px;
-  border: 1px solid #cdcdcd;
   margin: 0 auto;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-}
-.form-container hr {
   border: 1px solid #cdcdcd;
-  border-width: 1px 0 0 0;
 }
-.form-container h3 {
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-.form-container .button {
-  background-color: #4a90e2;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border: none;
-  font-size: 15px;
-  cursor: pointer;
-  margin-bottom: 5px;
-}
-.form-container .button:hover {
-  -moz-transition: all 0.1s ease-in;
-  -webkit-transition: all 0.1s ease-in;
-  -o-transition: all 0.1s ease-in;
-  transition: all 0.1s ease-in;
-  background-color: #2c6cb6;
-}
-.form-container .button.success {
-  background-color: #88bd00;
-}
-.form-container .button.success:hover {
-  -moz-transition: all 0.1s ease-in;
-  -webkit-transition: all 0.1s ease-in;
-  -o-transition: all 0.1s ease-in;
-  transition: all 0.1s ease-in;
-  background-color: #6e9900;
-}
-.form-container .button.danger {
-  background-color: #d0021b;
-}
-.form-container .button.danger:hover {
-  -moz-transition: all 0.1s ease-in;
-  -webkit-transition: all 0.1s ease-in;
-  -o-transition: all 0.1s ease-in;
-  transition: all 0.1s ease-in;
-  background-color: #ab0015;
-}
-.form-container .button.grey {
-  background-color: #b9cdd2;
-}
-.form-container .button.grey:hover {
-  -moz-transition: all 0.1s ease-in;
-  -webkit-transition: all 0.1s ease-in;
-  -o-transition: all 0.1s ease-in;
-  transition: all 0.1s ease-in;
-  background-color: #a0b4bb;
-}
-.form-container .left-col {
-  position: absolute;
-  width: 415px;
+#form-container {
   float: left;
-  border: 1px solid #cdcdcd;
-  border-width: 0 1px 0 0px;
-  height: 100%;
-  padding: 0 !important;
-}
-.form-container .left-col .form-group label {
-  font-weight: bold;
-  font-size: 15px;
-  margin-top: 10px;
-  margin-bottom: 8px;
-  display: block;
-}
-.form-container .left-col .col-sm-6 {
-  width: 47%;
-  float: left;
-  margin-left: 7px;
-}
-.form-container .left-col .section {
-  padding: 20px;
-  border: 1px solid #cdcdcd;
-  margin: 0 0 15px 0;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-}
-.form-container .left-col .choice button {
-  padding: 0;
-  width: 30px;
-  height: 35px;
-}
-.form-container .right-col {
-  width: 634px;
-  position: relative;
-  left: 415px;
-}
-.form-container .right-col .loading {
   width: 100%;
-  text-align: center;
-  margin-top: 50%;
+  overflow: hidden;
+  clear: left;
 }
-.form-container .right-col .section-break {
-  margin: 25px !important;
-  padding: 0px !important;
-  border: none !important;
-  width: 571px !important;
-}
-.form-container .right-col .section-break label {
-  font-size: 20px !important;
-  padding: 10px;
-  padding-bottom: 0px;
-  margin-bottom: 0px !important;
-}
-.form-container .right-col .section-break p {
-  margin-top: 0px;
-  padding: 10px;
-  padding-top: 0px;
-}
-.form-container .right-col #form-elements,
-.form-container .right-col #sortable-elements {
-  padding: 0px;
-  margin: 0px;
-}
-.form-container .right-col #form-elements li {
-  list-style-type: none;
-}
-.form-container .right-col .form-element {
+#tabs-container {
+  float: left;
+  width: 100%;
   position: relative;
-  list-style-type: none;
-  cursor: pointer;
-  padding: 25px;
-}
-.form-container .right-col .form-element input,
-.form-container .right-col .form-element texarea,
-.form-container .right-col .form-element label {
-  cursor: pointer;
-}
-.form-container .right-col .form-element h2,
-.form-container .right-col .form-element h5 {
-  margin: 0px;
-  padding: 0px;
-}
-.form-container .right-col .form-element h2 {
-  margin-bottom: 5px;
-}
-.form-container .right-col #form-settings-element {
-  margin-bottom: 10px;
-}
-.form-container .right-col #form-settings-element:hover {
-  border: none;
-}
-.form-container .right-col #form-settings-element.selected {
-  background-color: #c3dbf8;
-}
-.form-container .right-col #sortable-elements {
-  padding: 0px;
-  margin: 0px;
-  margin-top: 25px;
-}
-.form-container .right-col #sortable-elements .form-element {
-  width: 85%;
-  margin: 10px 0 10px 25px;
-  list-style-type: none;
-  cursor: pointer;
-  padding: 15px;
   border: 1px solid #cdcdcd;
+  border-width: 0 1px 0 0;
+  right: 60%;
 }
-.form-container .right-col #sortable-elements .form-element label {
-  display: block;
-  font-size: 14px;
-  margin-bottom: 10px;
+.left-col {
+  float: left;
+  width: 40%;
+  position: relative;
+  left: 60%;
+  overflow: hidden;
 }
-.form-container .right-col #sortable-elements .form-element.selected {
-  background-color: #DCF7C0;
-  border: 1px solid #7ED321;
+.right-col {
+  float: left;
+  width: 60%;
+  position: relative;
+  left: 60%;
+  overflow: hidden;
 }
-.form-container .right-col #sortable-elements .form-element:hover {
-  border: 1px dashed #7ED321;
-}
-.form-container .right-col .button {
-  margin: 20px 0 30px 25px;
-}
-.required-star {
-  color: red;
-}
+/* Tabs */
 .nav-tabs {
   margin: 0px;
   padding: 0px;
   border: 1px solid #cdcdcd;
   border-width: 0 0 1px 0;
-  margin-top: 45px;
+  margin-top: 46px;
   position: relative;
 }
 .nav-tabs li:first-child {
   margin-left: 10px;
 }
 .nav-tabs li {
-  color: #4a90e2;
   list-style-type: none;
   display: inline-block;
   padding: 10px 15px;
   font-size: 14px;
-  font-weight: bolder;
   cursor: pointer;
   position: relative;
 }
 .nav-tabs li a {
   text-decoration: none;
-  color: #4a90e2;
 }
 .nav-tabs li.active {
   border: 1px solid #cdcdcd;
@@ -233,6 +72,143 @@
   padding-bottom: 12px;
   top: 1px;
 }
+.required-star {
+  color: red;
+}
+/* Form Container */
+#form-container hr {
+  border: 1px solid #cdcdcd;
+  border-width: 1px 0 0 0;
+}
+#form-container h3 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+/* Form Fields */
+.right-col {
+  margin-bottom: 20px;
+}
+.right-col .loading {
+  width: 100%;
+  text-align: center;
+  margin-top: 17%;
+}
+.right-col #form-elements,
+.right-col #sortable-elements {
+  padding: 0px;
+  margin: 0px;
+}
+.right-col #form-elements li {
+  list-style-type: none;
+}
+.right-col .form-element {
+  position: relative;
+  list-style-type: none;
+  cursor: pointer;
+  padding: 25px;
+}
+.right-col .form-element input,
+.right-col .form-element texarea,
+.right-col .form-element label {
+  cursor: pointer;
+}
+.right-col .form-element h2,
+.right-col .form-element h5 {
+  margin: 0px;
+  padding: 0px;
+}
+.right-col .form-element h2 {
+  margin-bottom: 5px;
+}
+.right-col #form-settings-element {
+  margin-bottom: 10px;
+}
+.right-col #form-settings-element:hover {
+  border: none;
+}
+.right-col #form-settings-element.selected {
+  background-color: #c3dbf8;
+}
+.right-col #sortable-elements {
+  padding: 0px;
+  margin: 0px;
+  margin-top: 25px;
+}
+.right-col #sortable-elements .form-element {
+  width: 85%;
+  margin: 10px 0 10px 25px;
+  list-style-type: none;
+  cursor: pointer;
+  padding: 15px;
+  border: 1px solid #cdcdcd;
+}
+.right-col #sortable-elements .form-element label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.right-col #sortable-elements .form-element.selected {
+  background-color: #DCF7C0;
+  border: 1px solid #7ED321;
+}
+.right-col #sortable-elements .form-element:hover {
+  border: 1px dashed #7ED321;
+}
+.right-col #sortable-elements .section-break {
+  margin: 25px !important;
+  padding: 0px !important;
+  border: none !important;
+  width: 100%;
+  left: 0px;
+}
+.right-col #sortable-elements .section-break label {
+  font-size: 20px !important;
+  padding: 10px;
+  padding-bottom: 0px;
+  margin-bottom: 0px !important;
+}
+.right-col #sortable-elements .section-break p {
+  margin-top: 0px;
+  padding: 10px;
+  padding-top: 0px;
+}
+.right-col .button {
+  margin: 20px 0 30px 25px;
+}
+/* Tabs toolbox */
+.left-col .form-group label {
+  font-weight: bold;
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  display: block;
+}
+.left-col .col-sm-6 {
+  width: 47%;
+  float: left;
+  margin-left: 7px;
+}
+.left-col .section {
+  padding: 20px;
+  border: 1px solid #cdcdcd;
+  margin: 0 0 15px 0;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+.left-col .new-element {
+  margin-bottom: 3px;
+}
+.left-col .choice {
+  margin-bottom: 5px;
+}
+.left-col textarea {
+  width: 100%;
+}
+.left-col input[type='text'] {
+  width: 100%;
+}
+/* Footer */
 #footer {
   width: 600px;
   text-align: center;
@@ -242,7 +218,4 @@
 #footer p {
   margin-top: 30px;
   font-size: 14px;
-}
-#footer a {
-  color: #4a90e2;
 }
