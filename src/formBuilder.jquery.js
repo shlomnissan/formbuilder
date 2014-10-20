@@ -117,8 +117,14 @@
 				}
 
 				if( $(this).data('target') == '#field-settings' ) {
-					$('#element-0').addClass('selected');
-					currentlySelected = $('#element-0');
+					
+					if(!currentlySelected){
+						$('#element-0').addClass('selected');
+						currentlySelected = $('#element-0');
+					} else {
+						currentlySelected.addClass('selected');
+					}
+
 					bindSettings();
 					repositionToolbox();
 				}
@@ -336,7 +342,7 @@
 						currentlySelected.remove();
 						reorderElements();
 						tabs.showTab('#add-field');
-						currentlySelected = '';
+						
 						clearSelectedElements();
 					} else {
 						alert('Unable to delete this field! You must have at least 1 field in your form.');
@@ -348,7 +354,7 @@
 
 			$('#control-add-field').click(function(){
 				tabs.showTab('#add-field');
-				currentlySelected = '';
+				
 				clearSelectedElements();
 			});	
 
@@ -512,7 +518,6 @@
 		var clearSelectedElements = function() {
 
 			// Remove selected class from all elements
-			currentlySelected = '';
 			$('.form-element').each(function(){
 				$(this).removeClass('selected');
 			});
