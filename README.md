@@ -3,7 +3,7 @@ formbuilder
 
 jQuery and HTML5 Form Builder. Crafted with love by [1Byte Beta](http://1bytebeta.com).
 
-Demo: http://1bytebeta.com/projects/formbuilder/
+Demo: http://www.1bytebeta.com/projects/formbuilder/
 
 ## About
 
