@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+__author__ = 'Linggar Primahastoko'
+
 import re
 import json
 
