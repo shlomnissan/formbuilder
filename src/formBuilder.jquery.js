@@ -234,8 +234,6 @@
 					items = currentlySelected.children('.choices').children('option');
 				}
 
-				console.log(items);
-
 				items.each(function(i){
 
 					if( currentlySelected.data('type') != 'element-dropdown' ) {
@@ -272,8 +270,6 @@
 				var data = {
 					"choices":choices
 				}
-
-				console.log(data);
 
 				// Render the choices
 
@@ -319,13 +315,9 @@
 
 		}
 
-
-
 		/*******************************************************/
 		/*	Controls
 		/*******************************************************/
-
-
 
 		/*
 			controlSettings
@@ -346,6 +338,7 @@
 						clearSelectedElements();
 					} else {
 						alert('Unable to delete this field! You must have at least 1 field in your form.');
+
 					}
 	
 				}
@@ -356,10 +349,41 @@
 				tabs.showTab('#add-field');
 				
 				clearSelectedElements();
+
 			});	
 
 		}
 
+		/*
+			rules
+			Attach rules
+		*/
+
+		var rules = function() {
+
+			$("#control-add-rule").unbind("click");
+			$(".control-remove-rule").unbind("click");
+
+			$("#control-add-rule").click(function(){
+
+				data = {};	
+
+				dust.render('rule', data, function(err, out) {
+
+					$('#rules').append(out);
+					rules();
+
+				});
+
+			});
+
+			$(".control-remove-rule").click(function(){
+			
+				$(this).parent().remove();	
+
+			});
+
+		}
 
 		/*
 			controlMutlipleChoice
@@ -678,6 +702,7 @@
 
 					bindTextFields();
 					controlSettings();
+					rules();
 					reorderElements();
 
 					tabs = $('.nav-tabs').tabs();

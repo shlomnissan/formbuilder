@@ -8,6 +8,7 @@
           <li class="active toolbox-tab" data-target="#add-field">Add a Field</li>
           <li class="toolbox-tab" data-target="#field-settings">Field Settings</li>
           <li class="toolbox-tab" data-target="#form-settings">Form Settings</li>
+          <li class="toolbox-tab" data-target="#rules">Rules</li>					
         </ul>
 
         <div class="tab-content">
@@ -107,6 +108,14 @@
 
           </div>
 
+					<div class="tab-pane" id="rules" style="padding: 20px; display: none">
+
+						<div style="margin-bottom: 15px;"><button id="control-add-rule">Add Rule</button></div>			
+
+						<!-- RULES COME HERE -->	
+				
+					</div>
+
         </div>
 
       </div>
@@ -122,6 +131,7 @@
       <div style="clear: both"></div>
 
     </div> <!-- /container -->
+
   </div>
 
   <div style="clear: both"></div>
