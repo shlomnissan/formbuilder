@@ -16,7 +16,7 @@
 		</select> &nbsp;
 
 		<strong>Condition:</strong> 
-		<select>
+		<select class="control-rule-condition">
 			<option>Equal</option>
 		</select>
 
@@ -28,7 +28,7 @@
 		</select> &nbsp;
 
 		<strong>Action:</strong> &nbsp;
-		<select>
+		<select class="control-rule-action">
 			<option>Show</option>
 			<option>Hide</option>			
 		</select>
@@ -36,7 +36,7 @@
 		<br/>
 
 		<strong>Target:</strong> &nbsp;
-		<select>
+		<select class="control-rule-target">
 			<option>- Select Target -</option>
 
 			{#targets}

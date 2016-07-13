@@ -634,6 +634,8 @@
 		
 			formData['fields'] = Array();
 
+			// Get elements
+
 			$('#sortable-elements li').each(function(i){
 
 				var element = {
@@ -686,8 +688,31 @@
 				}
 
 				formData['fields'].push(element);
+
 			});
-			
+
+			formData['rules'] = Array();
+
+			// Get rules
+
+			$('.section.rule').each(function(i){
+
+				var rule = {
+
+					'field': $(this).find('.control-rule-field').val(),
+					'condition': $(this).find('.control-rule-condition').val(),
+					'value': $(this).find('.control-rule-value').val(),
+					'action': $(this).find('.control-rule-action').val(),
+					'target': $(this).find('.control-rule-target').val(),
+
+				}
+
+				formData['rules'].push(rule);
+
+			});
+
+
+			console.log(formData);
 
 			var serialized = JSON.stringify(formData);
 
@@ -760,7 +785,7 @@
 					tabs = $('.nav-tabs').tabs();
 
 					$('#save').click(function(e){
-						
+
 						var form_data = serialize();
 
 						$.ajax({
@@ -770,7 +795,9 @@
 							data: {formData: form_data},
 							
 							success: function () { 
+								
 								settings.onSaveForm.call();
+
 							}
 
 						});
