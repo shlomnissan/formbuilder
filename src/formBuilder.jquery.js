@@ -138,8 +138,6 @@
 		/*	Bind controls
 		/*******************************************************/
 
-
-
 		/*
 			bindTextFields
 			Binds textfields in the settings panel to form textfields
@@ -170,7 +168,6 @@
 
 			});
 		}
-
 
 		/*
 			bindButtons (checkboxes and radio buttons)
@@ -366,20 +363,77 @@
 
 			$("#control-add-rule").click(function(){
 
-				data = {};	
+				var fields 	= [];
+				var targets = [];
 
-				dust.render('rule', data, function(err, out) {
+				// get existing fields
+				$('.form-element').each(function(){
+					
+					var type = $(this).data("type");
+					var label = $(this).children('label').children('.label-title').html();	
 
-					$('#rules').append(out);
-					rules();
+					if( type == 'element-multiple-choice' ) { fields.push( { label: label } ); }
+					
+					if( label != undefined ) { targets.push( { label: label } ); }
 
 				});
+
+				if( fields.length == 0 ) {
+
+					alert("You need to have at least one multiple choice field to create a new rule.");
+
+				} else {
+
+					var data = {
+
+						fields: fields,
+						targets: targets
+
+					};
+
+					dust.render('rule', data, function(err, out) {
+
+						$('#rules').append(out);
+						rules();
+
+					});
+
+				}
 
 			});
 
 			$(".control-remove-rule").click(function(){
 			
 				$(this).parent().remove();	
+
+			});
+
+			$(".control-rule-field").change(function(){
+			
+				var htmlStr = "";
+
+				var val = $(this).val();
+
+				$('.form-element').each(function(){
+
+					var label = $(this).children('label').children('.label-title').html();
+
+					if( label == val ) {
+
+						$(this).children('.choices').children('.choice').each(function(){
+
+							var temp = $(this).children('label').children('.choice-label').html();
+			
+							htmlStr += "<option>" + temp + "</option>";
+						
+						});
+
+					}
+
+				});
+
+				$(".control-rule-value").prop('disabled', false);
+				$(".control-rule-value").html(htmlStr);
 
 			});
 
@@ -487,8 +541,6 @@
 						'lastChoice': lastChoice,
 						'elementId': elementId
 					}
-
-					console.log(data);
 
 					dust.render(template, data, function(err, out) {
 						currentlySelected.children('.choices').append(out);
