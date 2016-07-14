@@ -802,7 +802,7 @@
 							
 							success: function () { 
 								
-								//settings.onSaveForm.call();
+								settings.onSaveForm.call();
 
 							}
 
