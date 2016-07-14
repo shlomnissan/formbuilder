@@ -712,9 +712,9 @@
 			});
 
 
-			console.log(formData);
-
 			var serialized = JSON.stringify(formData);
+
+			console.log(serialized);
 
 			// Process the form data here...
 			return serialized;
@@ -764,9 +764,15 @@
 
 			// Render the form
 			dust.render('formbuilder-fields', base, function(err, out) {
+
+				dust.render('rules', base.form, function(err, out) {
 				
+					$("#rules").append(out);
+
+				});
 
 				$('.loading').fadeOut(function(){
+
 					$('#form-col').html(out);
 					$('#form-elements').fadeIn();
 
@@ -796,7 +802,7 @@
 							
 							success: function () { 
 								
-								settings.onSaveForm.call();
+								//settings.onSaveForm.call();
 
 							}
 
@@ -806,7 +812,7 @@
 
 				});
 
-		    });
+			});
 
 		});
 

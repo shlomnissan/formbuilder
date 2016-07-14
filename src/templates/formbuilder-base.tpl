@@ -110,6 +110,8 @@
 
 					<div class="tab-pane" id="rules" style="padding: 20px; display: none">
 
+						<p>When rules are saved, they can no longer be modified. To override a rule, remove it first and create a new one.</p>
+
 						<div style="margin-bottom: 15px;"><button id="control-add-rule">Add Rule</button></div>			
 
 						<!-- RULES COME HERE -->	
