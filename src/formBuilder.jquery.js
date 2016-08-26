@@ -7,11 +7,14 @@
 (function($) {
 	
 	$.fn.formBuilder = function(options) {
-		
+		var that = this;
+		if (that.length === 0)
+			return that;
 		// Set default settings
 		var settings = $.extend({
 			load_url: '/',
-			save_url: '/'
+			save_url: '/',
+			template_url: 'src/templates'
         }, options);
 
 
@@ -733,7 +736,7 @@
 
 		// Auto load templates
 		dust.onLoad = function(name, callback) {
-		  $.ajax('src/templates/' + name + '.tpl', {
+		  $.ajax(settings.template_url + '/' + name + '.tpl', {
 		    success: function(data) {
 		      callback(undefined, data);
 		    },
@@ -798,8 +801,12 @@
 							
 							type: "POST",
 							url: settings.save_url,
-							data: {formData: form_data},
-							
+							data: form_data,
+							dataType: "json",
+							headers: {
+								"Accept" : "application/json; charset=utf-8",
+								"Content-Type": "application/json; charset=utf-8"
+							},
 							success: function () { 
 								
 								settings.onSaveForm.call();
