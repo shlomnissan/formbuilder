@@ -7,7 +7,9 @@
 (function($) {
 	
 	$.fn.formBuilder = function(options) {
-		
+		var that = this;
+		if (that.length === 0)
+			return that;
 		// Set default settings
 		var settings = $.extend({
 			load_url: '/',
