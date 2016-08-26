@@ -11,7 +11,8 @@
 		// Set default settings
 		var settings = $.extend({
 			load_url: '/',
-			save_url: '/'
+			save_url: '/',
+			template_url: 'src/templates'
         }, options);
 
 
@@ -733,7 +734,7 @@
 
 		// Auto load templates
 		dust.onLoad = function(name, callback) {
-		  $.ajax('src/templates/' + name + '.tpl', {
+		  $.ajax(settings.template_url + '/' + name + '.tpl', {
 		    success: function(data) {
 		      callback(undefined, data);
 		    },
