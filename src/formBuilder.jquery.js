@@ -799,8 +799,12 @@
 							
 							type: "POST",
 							url: settings.save_url,
-							data: {formData: form_data},
-							
+							data: form_data,
+							dataType: "json",
+							headers: {
+								"Accept" : "application/json; charset=utf-8",
+								"Content-Type": "application/json; charset=utf-8"
+							},
 							success: function () { 
 								
 								settings.onSaveForm.call();
