@@ -657,8 +657,8 @@
 						$(this).find('.choices').children('option').each(function(index){
 
 							var choice = {
-								'title': $(this).val(),
-								'value': $(this).val(),
+								'title': $(this).html(),
+								'value': $(this).html(),
 								'checked': $(this).is(':selected') ? true : false,
 							}
 
